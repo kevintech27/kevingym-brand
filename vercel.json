@@ -4,25 +4,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
 
-  "//": [
-    "REDIRECTIONS CIBLEES — mission 6.",
-    "kevingym.com a servi le site du PROGRAMME entre le 23/07 et la separation.",
-    "Ces routes appartiennent au programme et doivent donc partir vers",
-    "kevingymworkout.com. Il n'y a AUCUNE redirection globale : tout le reste de",
-    "kevingym.com sert bien le site personnel.",
-    "",
-    "Query string : Vercel la conserve automatiquement sur une redirect.",
-    "Fragment (#access_token, #error_code...) : jamais envoye au serveur, le",
-    "navigateur le re-attache seul a l'URL de destination. Les liens Supabase",
-    "survivent donc a ces redirections — comportement deja verifie en production",
-    "sur la redirection kevingymworkout.com -> www.kevingym.com.",
-    "",
-    "permanent:false (302) VOLONTAIREMENT sur les routes d'authentification :",
-    "un 301 est mis en cache durablement par les navigateurs, ce qui rendrait un",
-    "futur changement d'architecture tres difficile a corriger sur les postes des",
-    "clients. Les routes marketing et legales sont en 301 pour transmettre le SEO."
-  ],
-
   "redirects": [
     { "source": "/buy", "destination": "https://kevingymworkout.com/buy", "permanent": true },
     { "source": "/success", "destination": "https://kevingymworkout.com/success", "permanent": false },
