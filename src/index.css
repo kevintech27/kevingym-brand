@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #000000;
+  }
+
+  body {
+    @apply bg-kg-black text-kg-white font-sans antialiased;
+    /* Selection cyan discrete : rappel de l'accent sans l'imposer. */
+  }
+
+  ::selection {
+    background: #22d3ee;
+    color: #000000;
+  }
+
+  /* Focus visible sobre mais reel : accessibilite au clavier. */
+  :focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Label technique : petite capitale mono tres espacee. Signature du systeme. */
+  .kg-label {
+    @apply font-mono text-[10px] uppercase tracking-label text-kg-grey;
+  }
+
+  .kg-rule {
+    @apply h-px w-full bg-kg-line;
+  }
+
+  /* Conteneur editorial commun a toutes les sections. */
+  .kg-wrap {
+    @apply mx-auto w-full max-w-editorial px-5 sm:px-8 lg:px-12;
+  }
+
+  .kg-link {
+    @apply text-kg-fog transition-colors duration-200 hover:text-kg-white;
+  }
+
+  /* Bouton principal : blanc plein, forme capsule, tres lisible sur OLED. */
+  .kg-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-kg-white px-7 py-4
+           font-mono text-[11px] uppercase tracking-label text-kg-black
+           transition-all duration-200 hover:bg-kg-fog active:scale-[0.98];
+  }
+
+  /* Bouton secondaire : contour seulement. */
+  .kg-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-kg-line px-7 py-4
+           font-mono text-[11px] uppercase tracking-label text-kg-fog
+           transition-all duration-200 hover:border-kg-cyan hover:text-kg-cyan active:scale-[0.98];
+  }
+}
+
+/* Respecte les utilisateurs qui limitent les animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

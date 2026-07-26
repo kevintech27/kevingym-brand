@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+
+  "//": [
+    "REDIRECTIONS CIBLEES — mission 6.",
+    "kevingym.com a servi le site du PROGRAMME entre le 23/07 et la separation.",
+    "Ces routes appartiennent au programme et doivent donc partir vers",
+    "kevingymworkout.com. Il n'y a AUCUNE redirection globale : tout le reste de",
+    "kevingym.com sert bien le site personnel.",
+    "",
+    "Query string : Vercel la conserve automatiquement sur une redirect.",
+    "Fragment (#access_token, #error_code...) : jamais envoye au serveur, le",
+    "navigateur le re-attache seul a l'URL de destination. Les liens Supabase",
+    "survivent donc a ces redirections — comportement deja verifie en production",
+    "sur la redirection kevingymworkout.com -> www.kevingym.com.",
+    "",
+    "permanent:false (302) VOLONTAIREMENT sur les routes d'authentification :",
+    "un 301 est mis en cache durablement par les navigateurs, ce qui rendrait un",
+    "futur changement d'architecture tres difficile a corriger sur les postes des",
+    "clients. Les routes marketing et legales sont en 301 pour transmettre le SEO."
+  ],
+
+  "redirects": [
+    { "source": "/buy", "destination": "https://kevingymworkout.com/buy", "permanent": true },
+    { "source": "/success", "destination": "https://kevingymworkout.com/success", "permanent": false },
+    { "source": "/checkout-success", "destination": "https://kevingymworkout.com/checkout-success", "permanent": false },
+
+    { "source": "/login", "destination": "https://kevingymworkout.com/login", "permanent": false },
+    { "source": "/forgot-password", "destination": "https://kevingymworkout.com/forgot-password", "permanent": false },
+    { "source": "/set-password", "destination": "https://kevingymworkout.com/set-password", "permanent": false },
+    { "source": "/auth/:path*", "destination": "https://kevingymworkout.com/auth/:path*", "permanent": false },
+    { "source": "/dashboard", "destination": "https://kevingymworkout.com/dashboard", "permanent": false },
+
+    { "source": "/cgv", "destination": "https://kevingymworkout.com/cgv", "permanent": true },
+    { "source": "/mentions-legales", "destination": "https://kevingymworkout.com/mentions-legales", "permanent": true },
+    { "source": "/confidentialite", "destination": "https://kevingymworkout.com/confidentialite", "permanent": true }
+  ],
+
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    }
+  ]
+}
