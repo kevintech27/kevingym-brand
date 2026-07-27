@@ -288,13 +288,19 @@ const Builder = () => (
         </Reveal>
       </div>
 
-      <div className="mx-auto mt-12 max-w-2xl space-y-6 text-center">
-        {BUILDER.facts.map((f, i) => (
-          <Reveal key={f} delay={200 + i * 90}>
-            <p className="text-lg font-light leading-relaxed tracking-copy text-kg-muted">{f}</p>
-          </Reveal>
-        ))}
-      </div>
+      {/* The facts sit on a glass pane rather than straight on the gradient.
+          It is the only surface on the page with real colour moving behind
+          it, so it is the only one where the blur reads as glass instead of
+          as a slightly lighter rectangle. */}
+      <Reveal delay={220}>
+        <div className="nx-panel mx-auto mt-14 max-w-2xl space-y-6 text-center">
+          {BUILDER.facts.map((f) => (
+            <p key={f} className="text-lg font-light leading-relaxed tracking-copy text-white/75">
+              {f}
+            </p>
+          ))}
+        </div>
+      </Reveal>
     </div>
   </section>
 );
