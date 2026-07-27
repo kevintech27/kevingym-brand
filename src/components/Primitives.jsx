@@ -242,6 +242,35 @@ export const Img = ({
 };
 
 /**
+ * BrandMark: a partner's logo, falling back to its name set as a wordmark.
+ *
+ * The fallback is the point. Logos arrive one at a time and paths get typo'd,
+ * so a missing file has to degrade into something that still looks deliberate
+ * — never a broken-image icon sitting on a partner's name.
+ */
+export const BrandMark = ({ name, logo }) => {
+  const [failed, setFailed] = useState(!logo);
+
+  if (failed) {
+    return (
+      <span className="font-display text-base font-semibold uppercase tracking-[0.08em] text-kg-muted transition-colors duration-500 ease-apple group-hover:text-kg-white sm:text-lg">
+        {name}
+      </span>
+    );
+  }
+
+  return (
+    <img
+      src={logo}
+      alt={name}
+      loading="lazy"
+      onError={() => setFailed(true)}
+      className="max-h-9 w-auto max-w-[70%] object-contain opacity-70 transition-opacity duration-500 ease-apple group-hover:opacity-100"
+    />
+  );
+};
+
+/**
  * Stat: a single proof-bar entry. Falls back to an honest placeholder.
  *
  * Only figures get the display treatment — a phrase like "FR + International"

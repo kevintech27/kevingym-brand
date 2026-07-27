@@ -130,6 +130,13 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    /* background-clip:text paints only inside the background positioning area.
+       At our sub-1 line-heights a descender hangs below that box, gets no
+       background, and — since the glyph itself is transparent — vanishes:
+       the "g" of Nguena lost its tail. Extend the box, then pull the extra
+       straight back out of the layout so nothing moves. */
+    padding-bottom: 0.18em;
+    margin-bottom: -0.18em;
   }
 
   /* --- Buttons ------------------------------------------------------------
@@ -298,23 +305,6 @@
     @apply border border-nx-border bg-nx-surface backdrop-blur-xl;
   }
 
-  .nx-tag {
-    @apply rounded-full border border-nx-border bg-nx-surface px-4 py-2
-           font-mono text-[11px] uppercase tracking-label text-nx-cyan
-           transition-all duration-500 ease-apple;
-  }
-
-  .nx-tag:hover {
-    border-color: rgba(0, 255, 255, 0.4);
-    background: rgba(0, 255, 255, 0.08);
-    box-shadow: 0 0 24px -8px rgba(0, 255, 255, 0.5);
-  }
-
-  .nx-btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-nx-border px-7 py-3.5
-           font-mono text-[11px] uppercase tracking-label text-nx-cyan
-           transition-all duration-500 ease-apple hover:bg-nx-surface active:scale-[0.98];
-  }
 }
 
 /* Respect users who limit motion. */

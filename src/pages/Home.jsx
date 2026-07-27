@@ -14,6 +14,7 @@ import {
 } from '@/lib/brand';
 import {
   Aura,
+  BrandMark,
   Card,
   Img,
   Label,
@@ -152,15 +153,21 @@ const ProofBar = () => (
  * Identity — the manifesto, centered, set light and large. One voice, no
  * alternating styles: the restraint is the point.
  */
+/**
+ * Identity — the one section that is only words. It carries the brand itself
+ * (discipline, focus, lock in), so it gets the page's most generous spacing
+ * and its opening line is set at hero scale. Deliberately not a grid of
+ * "values" with icons: on this page the restraint is the argument.
+ */
 const Identity = () => (
-  <Section label="Identity" align="center">
-    <div className="mx-auto max-w-3xl space-y-10 text-center">
+  <Section label="Identity" align="center" className="lg:py-56">
+    <div className="mx-auto max-w-3xl space-y-12 text-center sm:space-y-14">
       {PERSON.manifesto.map((line, i) => (
-        <Reveal key={line} delay={i * 100}>
+        <Reveal key={line} delay={i * 120}>
           <p
             className={
               i === 0
-                ? 'kg-display kg-shade text-[clamp(1.6rem,4.4vw,2.9rem)] leading-[1.15]'
+                ? 'kg-display kg-shade text-[clamp(1.9rem,5.2vw,3.5rem)] leading-[1.12]'
                 : 'text-lg font-light leading-relaxed tracking-copy text-kg-muted sm:text-xl'
             }
           >
@@ -221,22 +228,22 @@ const Partnerships = () => (
     align="center"
     className="border-t border-kg-border"
   >
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {/* A logo wall, not a card per brand: with six partners and no copy yet,
+        cards would be six mostly-empty boxes. Each cell holds the logo once
+        the asset exists and the brand's wordmark until then, so the row reads
+        as finished at every stage. */}
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5">
       {COLLABORATIONS.map((c, i) => (
-        <Reveal key={c.name} delay={i * 90} className="h-full">
-          <Card className="flex h-full flex-col p-8 sm:p-10">
-            <h3 className="font-display text-2xl font-semibold tracking-headline text-kg-white sm:text-3xl">
-              {c.name}
-            </h3>
-            {c.desc ? (
-              <p className="mt-4 text-sm font-light leading-relaxed tracking-copy text-kg-muted">
+        <Reveal key={c.name} delay={(i % 3) * 90} className="h-full">
+          <Card className="group flex h-full min-h-[130px] flex-col items-center justify-center gap-3 px-5 py-8 text-center sm:min-h-[150px]">
+            <BrandMark name={c.name} logo={c.logo} />
+            {c.desc && (
+              <p className="text-xs font-light leading-relaxed tracking-copy text-kg-dim">
                 {c.desc}
               </p>
-            ) : (
-              <p className="mt-4 text-sm font-light tracking-copy text-kg-dim">To fill in.</p>
             )}
             {c.result && (
-              <p className="mt-6 text-xs font-medium uppercase tracking-label text-kg-muted">
+              <p className="text-[11px] font-medium uppercase tracking-label text-kg-muted">
                 {c.result}
               </p>
             )}
@@ -245,8 +252,8 @@ const Partnerships = () => (
       ))}
 
       {Array.from({ length: COLLABORATION_SLOTS_OPEN }).map((_, i) => (
-        <Reveal key={`slot-${i}`} delay={(COLLABORATIONS.length + i) * 90}>
-          <div className="flex h-full min-h-[168px] items-center justify-center rounded-[28px] border border-dashed border-kg-border">
+        <Reveal key={`slot-${i}`}>
+          <div className="flex h-full min-h-[130px] items-center justify-center rounded-[28px] border border-dashed border-kg-border sm:min-h-[150px]">
             <span className="kg-label">Open slot</span>
           </div>
         </Reveal>
@@ -278,14 +285,8 @@ const Builder = () => (
           <p className="kg-display text-[clamp(1.8rem,5vw,3rem)] text-kg-white">Hello.</p>
         </Reveal>
 
-        <Reveal delay={110}>
-          <Label tone="nexus" className="mt-10 inline-block">
-            {BUILDER.label}
-          </Label>
-        </Reveal>
-
-        <Reveal delay={180}>
-          <h2 className="kg-display kg-shade mt-6 text-[clamp(2.1rem,6vw,4.25rem)]">
+        <Reveal delay={140}>
+          <h2 className="kg-display kg-shade mt-8 text-[clamp(2.1rem,6vw,4.25rem)]">
             I also build the systems.
           </h2>
         </Reveal>
@@ -293,21 +294,11 @@ const Builder = () => (
 
       <div className="mx-auto mt-12 max-w-2xl space-y-6 text-center">
         {BUILDER.facts.map((f, i) => (
-          <Reveal key={f} delay={240 + i * 90}>
+          <Reveal key={f} delay={200 + i * 90}>
             <p className="text-lg font-light leading-relaxed tracking-copy text-kg-muted">{f}</p>
           </Reveal>
         ))}
       </div>
-
-      <Reveal delay={420}>
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
-          {BUILDER.stack.map((s) => (
-            <span key={s} className="nx-tag">
-              {s}
-            </span>
-          ))}
-        </div>
-      </Reveal>
     </div>
   </section>
 );
