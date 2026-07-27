@@ -241,17 +241,40 @@ export const Img = ({
   );
 };
 
-/** Stat: a single proof-bar number. Falls back to an honest placeholder. */
-export const Stat = ({ label, value }) => (
-  <div className="group text-center">
-    <div className="kg-display kg-shade text-[clamp(2rem,5vw,3.25rem)] tabular-nums">
-      {value || <span className="font-sans text-sm font-light tracking-copy text-kg-dim">To add</span>}
+/**
+ * Stat: a single proof-bar entry. Falls back to an honest placeholder.
+ *
+ * Only figures get the display treatment — a phrase like "FR + International"
+ * set at 3rem overflows its column and wraps into the row below, so text
+ * values set small instead. The fixed-height value box is what keeps every
+ * label in the row on one baseline regardless of which branch renders.
+ */
+export const Stat = ({ label, value }) => {
+  const isFigure = Boolean(value) && /^[\d]/.test(value);
+
+  return (
+    <div className="group text-center">
+      <div className="flex min-h-[3rem] items-center justify-center sm:min-h-[3.75rem]">
+        {value ? (
+          <span
+            className={
+              isFigure
+                ? 'kg-display kg-shade text-[clamp(2rem,5vw,3.25rem)] tabular-nums'
+                : 'font-display text-lg font-semibold tracking-headline text-kg-white sm:text-xl'
+            }
+          >
+            {value}
+          </span>
+        ) : (
+          <span className="font-sans text-sm font-light tracking-copy text-kg-dim">To add</span>
+        )}
+      </div>
+      <div className="kg-label mt-3 transition-colors duration-500 ease-apple group-hover:text-kg-muted">
+        {label}
+      </div>
     </div>
-    <div className="kg-label mt-3 transition-colors duration-500 ease-apple group-hover:text-kg-muted">
-      {label}
-    </div>
-  </div>
-);
+  );
+};
 
 /** Callout for content Kevin still needs to fill in. Monochrome by default. */
 export const Todo = ({ children, tone = 'dim' }) => (

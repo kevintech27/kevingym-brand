@@ -122,9 +122,11 @@
   }
 
   /* Light falls off down a tall letterform. A vertical white→grey clip makes
-     huge type sit *in* the black instead of on top of it. */
+     huge type sit *in* the black instead of on top of it.
+     Deliberately shallow: at a steeper ramp a one-line headline reads as
+     washed out, and a two-line one turns its second line grey. */
   .kg-shade {
-    background: linear-gradient(180deg, #ffffff 22%, rgba(255, 255, 255, 0.62) 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 45%, rgba(255, 255, 255, 0.82) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -140,14 +142,14 @@
            transition-all duration-500 ease-apple;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      0 6px 26px -10px rgba(255, 255, 255, 0.45);
+      0 4px 20px -12px rgba(255, 255, 255, 0.38);
   }
 
   .kg-btn:hover {
     transform: translateY(-1px);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      0 14px 40px -12px rgba(255, 255, 255, 0.65);
+      0 12px 34px -14px rgba(255, 255, 255, 0.6);
   }
 
   .kg-btn:active {
@@ -253,7 +255,7 @@
      twice on the page — white in the hero, cyan/violet in the builder zone
      (see .nx-aura). Color is driven by --aura-color so both share one shape. */
   .kg-aura {
-    --aura-color: rgba(255, 255, 255, 0.14);
+    --aura-color: rgba(255, 255, 255, 0.2);
     @apply pointer-events-none absolute rounded-full blur-[120px] animate-breathe;
     background: radial-gradient(
       circle,

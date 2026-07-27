@@ -26,7 +26,9 @@ export const ECOSYSTEM = {
 export const STATS = [
   { id: 'tiktok', label: 'TikTok', value: '124K' },
   { id: 'instagram', label: 'Instagram', value: '34K' },
-  { id: 'top_post', label: 'Top Post', value: '8.9M Views' },
+  // Keep the unit in the label, not the value: the value slot is set at
+  // display size and "8.9M Views" wraps onto two lines there.
+  { id: 'top_post', label: 'Top post views', value: '8.9M' },
   { id: 'likes', label: 'TikTok Likes', value: '6.7M' },
   { id: 'reach', label: 'Reach', value: 'FR + International' },
 ];

@@ -52,8 +52,12 @@ const Hero = () => {
 
       <div className="kg-wrap relative flex min-h-[100svh] flex-col items-center pb-24 pt-36 text-center sm:pt-40">
         <div style={typeStyle} className="will-change-transform">
+          {/* Constrained + balanced: at 390px the roles wrap, and without a
+              measure the break orphans "FOUNDER" on its own line. */}
           <Reveal>
-            <Label>{PERSON.roles.join('   ·   ')}</Label>
+            <Label className="mx-auto block max-w-[20rem] text-balance sm:max-w-none">
+              {PERSON.roles.join('   ·   ')}
+            </Label>
           </Reveal>
 
           <Reveal delay={90}>
