@@ -1,12 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-// =============================================================================
-// KEVINGYM Brand System — shared visual primitives.
-// -----------------------------------------------------------------------------
+// KEVINGYM Brand System: shared visual primitives.
 // Register: precision over ornament. One display face, one text face, one
 // motion curve. Everything that moves uses the same easing so the page reads
 // as a single mechanism rather than a stack of effects.
-// =============================================================================
 
 /** Utility label. `tone="nexus"` is only ever used inside `.nx-zone`. */
 export const Label = ({ children, tone = 'dim', className = '' }) => (
@@ -18,7 +15,7 @@ export const Rule = ({ className = '' }) => <div className={`kg-rule ${className
 
 /**
  * Signature aura: a soft radial glow behind the content. Renders exactly
- * twice on the page — white in the hero, cyan/violet in the builder zone.
+ * twice on the page: white in the hero, cyan/violet in the builder zone.
  */
 export const Aura = ({ tone = 'white', className = '' }) => (
   <div aria-hidden className={`kg-aura ${tone === 'nexus' ? 'nx-aura' : ''} ${className}`} />
@@ -26,7 +23,7 @@ export const Aura = ({ tone = 'white', className = '' }) => (
 
 /**
  * Tracks how far the page has scrolled, in pixels, on a rAF tick. Used for
- * the hero parallax and the nav's material change — one listener, shared.
+ * the hero parallax and the nav's material change. One listener, shared.
  */
 export const useScrollY = () => {
   const [y, setY] = useState(0);
@@ -73,7 +70,7 @@ export const usePrefersReducedMotion = () => {
 
 /**
  * Feeds the cursor position into a `.kg-card` as CSS variables so its
- * spotlight gradient tracks the pointer. Pure CSS handles the rendering —
+ * spotlight gradient tracks the pointer. Pure CSS handles the rendering:
  * this only writes two custom properties, never React state, so it costs
  * nothing per frame.
  */
@@ -157,7 +154,7 @@ export const Section = ({
 
 /**
  * Reveal: animates a block in when it enters the viewport. IntersectionObserver
- * rather than a library — zero dependency, and disabled automatically via
+ * rather than a library: zero dependency, and disabled automatically via
  * prefers-reduced-motion (see index.css).
  */
 export const Reveal = ({ children, delay = 0, className = '' }) => {
@@ -245,8 +242,8 @@ export const Img = ({
  * BrandMark: a partner's logo, falling back to its name set as a wordmark.
  *
  * The fallback is the point. Logos arrive one at a time and paths get typo'd,
- * so a missing file has to degrade into something that still looks deliberate
- * — never a broken-image icon sitting on a partner's name.
+ * so a missing file has to degrade into something that still looks deliberate,
+ * never a broken-image icon sitting on a partner's name.
  */
 export const BrandMark = ({ name, logo }) => {
   const [failed, setFailed] = useState(!logo);
@@ -273,7 +270,7 @@ export const BrandMark = ({ name, logo }) => {
 /**
  * Stat: a single proof-bar entry. Falls back to an honest placeholder.
  *
- * Only figures get the display treatment — a phrase like "FR + International"
+ * Only figures get the display treatment. A phrase like "FR + International"
  * set at 3rem overflows its column and wraps into the row below, so text
  * values set small instead. The fixed-height value box is what keeps every
  * label in the row on one baseline regardless of which branch renders.

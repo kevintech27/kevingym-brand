@@ -3,10 +3,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
-      // === KEVINGYM — SYSTEM (base charter, whole site) ======================
+      // KEVINGYM SYSTEM: base charter, whole site.
       // Pure black, white, and two greys. No color accent anywhere in this
-      // zone — the only "accent" is white-on-black and type-scale contrast.
-      // === NEXUS (builder section only) ======================================
+      // zone. The only "accent" is white-on-black and type-scale contrast.
+      // NEXUS: builder section only.
       // Cyan never leaks outside the `nx-` scoped classes below.
       colors: {
         kg: {
@@ -66,7 +66,7 @@ export default {
           '0%, 100%': { opacity: '0.72', transform: 'scale(1)' },
           '50%': { opacity: '1', transform: 'scale(1.06)' },
         },
-        // Slow, gentle contour morph — makes a perfect circle drift like a
+        // Slow, gentle contour morph. Makes a perfect circle drift like a
         // liquid blob instead of a rigid disc. NEXUS sphere only.
         fluid: {
           '0%, 100%': { borderRadius: '42% 58% 65% 35% / 45% 40% 60% 55%' },

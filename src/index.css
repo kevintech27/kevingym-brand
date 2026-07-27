@@ -5,7 +5,7 @@
 @layer base {
   html {
     background-color: #000000;
-    /* Everything on this page is white type on pure black — subpixel
+    /* Everything on this page is white type on pure black, so subpixel
        rendering would fringe it. Greyscale AA is what makes large light
        type on dark read as crisp instead of bold-ish and muddy. */
     -webkit-font-smoothing: antialiased;
@@ -36,7 +36,7 @@
 
   /* Photographic grain over the whole page: kills the "flat digital black"
      and makes gradients/auras read like film instead of banding. Kept very
-     low — at higher opacity it reads as noise on the type. */
+     low: at higher opacity it reads as noise on the type. */
   body::after {
     content: '';
     position: fixed;
@@ -59,7 +59,7 @@
   }
 
   /* Monochrome selection/focus everywhere in the SYSTEM zone. Color accents
-     (cyan) only exist inside `.nx-zone` — see the NEXUS overrides below. */
+     (cyan) only exist inside `.nx-zone`. See the NEXUS overrides below. */
   ::selection {
     background: #ffffff;
     color: #000000;
@@ -94,7 +94,7 @@
 }
 
 @layer components {
-  /* Editorial eyebrow label: wide-tracked sans, never mono — the technical
+  /* Editorial eyebrow label: wide-tracked sans, never mono. The technical
      register lives exclusively in the NEXUS zone. */
   .kg-label {
     @apply font-sans text-[11px] font-medium uppercase tracking-label text-kg-dim;
@@ -113,7 +113,7 @@
     @apply text-kg-muted transition-colors duration-300 ease-apple hover:text-kg-white;
   }
 
-  /* --- Display type -------------------------------------------------------
+  /* Display type
      Two treatments, used everywhere so the page reads as one voice. */
 
   /* Hero / section headline: large, semibold, optically tight. */
@@ -132,14 +132,14 @@
     color: transparent;
     /* background-clip:text paints only inside the background positioning area.
        At our sub-1 line-heights a descender hangs below that box, gets no
-       background, and — since the glyph itself is transparent — vanishes:
+       background, and since the glyph itself is transparent it vanishes:
        the "g" of Nguena lost its tail. Extend the box, then pull the extra
        straight back out of the layout so nothing moves. */
     padding-bottom: 0.18em;
     margin-bottom: -0.18em;
   }
 
-  /* --- Buttons ------------------------------------------------------------
+  /* Buttons
      Sentence case, not uppercase: the Apple/Google control register. The
      shadow is a soft white bloom, which on OLED black reads as emitted light
      rather than a drop shadow. */
@@ -164,7 +164,7 @@
     transition-duration: 120ms;
   }
 
-  /* Secondary button: glass outline, monochrome hover — never cyan here. */
+  /* Secondary button: glass outline, monochrome hover, never cyan here. */
   .kg-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-kg-border
            bg-white/[0.03] px-7 py-3.5 font-sans text-[13.5px] font-medium tracking-copy text-kg-muted
@@ -172,10 +172,10 @@
            hover:border-white/25 hover:bg-white/[0.07] hover:text-kg-white active:scale-[0.98];
   }
 
-  /* --- Materials ----------------------------------------------------------- */
+  /* Materials */
 
   /* Glass surface: used by the nav pill and cards in both zones. The
-     saturation boost is what separates real Apple glass from a plain blur —
+     saturation boost is what separates real Apple glass from a plain blur:
      it lets the color underneath bleed through instead of going grey. */
   .kg-glass {
     background: rgba(255, 255, 255, 0.045);
@@ -259,7 +259,7 @@
   }
 
   /* Signature aura: a soft radial glow, breathing slowly. Appears exactly
-     twice on the page — white in the hero, cyan/violet in the builder zone
+     twice on the page: white in the hero, cyan/violet in the builder zone
      (see .nx-aura). Color is driven by --aura-color so both share one shape. */
   .kg-aura {
     --aura-color: rgba(255, 255, 255, 0.2);
@@ -273,17 +273,15 @@
   }
 }
 
-/* ============================================================================
-   NEXUS — scoped strictly to `.nx-zone` (the builder section). Cyan/violet
-   must never be reachable outside this selector prefix.
-   ========================================================================= */
+/* NEXUS: scoped strictly to `.nx-zone` (the builder section). Cyan/violet
+   must never be reachable outside this selector prefix. */
 @layer components {
   .nx-zone {
     @apply bg-nx-bg;
   }
 
   /* Richer than the shared .kg-aura: a defined multi-stop sphere (bright
-     cyan core → blue → dark navy). Blue-dominant, almost no violet — matches
+     cyan core → blue → dark navy). Blue-dominant, almost no violet. Matches
      the reference: darker and bluer, not purple. */
   .nx-aura {
     @apply blur-[85px] animate-nx-fluid;

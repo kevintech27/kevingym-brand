@@ -1,13 +1,10 @@
 import React from 'react';
 import { useScrollY } from '@/components/Primitives';
 
-// =============================================================================
-// Nav — floating pill, fixed top, monochrome.
-// -----------------------------------------------------------------------------
+// Nav: floating pill, fixed top, monochrome.
 // The site is a single scrolling page: no route menu, no hamburger. The pill
 // is weightless over the hero and only condenses into glass once content is
-// scrolling underneath it — the material appears when it has a job to do.
-// =============================================================================
+// scrolling underneath it. The material appears when it has a job to do.
 
 const LINKS = [
   { href: '#work', label: 'Work' },

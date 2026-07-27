@@ -1,10 +1,7 @@
-// =============================================================================
-// KEVINGYM BRAND SYSTEM — central data for the personal site.
-// -----------------------------------------------------------------------------
+// KEVINGYM BRAND SYSTEM: central data for the personal site.
 // Everything numeric, named, or contractual lives here so it stays verifiable
 // and editable in one place. Kevin updates this file; the components only
-// render what's here — nothing is invented to "look" more impressive.
-// =============================================================================
+// render what's here. Nothing is invented to "look" more impressive.
 
 export const SITE_URL = 'https://kevingym.com';
 
@@ -17,7 +14,7 @@ export const ECOSYSTEM = {
   links: 'https://links.kevingym.com',
 };
 
-// --- Proof bar ----------------------------------------------------------------
+// Proof bar
 // Single source of truth for the numbers shown under the hero.
 // Checked against the public TikTok/Instagram profiles on 2026-07-27:
 // TikTok 124.1K followers · 6.7M cumulative likes · pinned top video 8.9M views
@@ -41,7 +38,7 @@ export const PERSON = {
   manifesto: [
     "I train because it's the one thing that never lies to me about the work I put in.",
     'Discipline over motivation, focus over noise. I build the same way I train: no shortcuts, no version that looks good but skips the reps.',
-    "That's the standard behind everything with my name on it — on camera or in the code.",
+    "That's the standard behind everything with my name on it, on camera or in the code.",
   ],
   city: 'France',
 };
@@ -61,8 +58,8 @@ export const SOCIALS = [
   },
 ];
 
-// --- Work / visuals gallery ---------------------------------------------------
-// `image: null` on every item for now — grey placeholders until real
+// Work / visuals gallery
+// `image: null` on every item for now: grey placeholders until real
 // cinematic content is shot, rather than reusing old casual selfies.
 export const WORK_ITEMS = [
   { id: 'w1', title: 'Hybrid physique', note: 'To add', image: null },
@@ -75,17 +72,17 @@ export const WORK_ITEMS = [
 
 export const DELIVERABLES = ['Instagram Reels', 'TikTok', 'UGC', 'Shoots', 'Long-form'];
 
-// --- Partnerships --------------------------------------------------------------
+// Partnerships
 // `desc: null` renders nothing rather than a fabricated deliverable. A brand
 // that catches an invented result won't come back.
 //
 // `logo` is a path under `public/`, e.g. '/images/brands/dfyne.svg'. Until a
 // file is there the wall falls back to the brand name set as a wordmark, so
-// the section reads as finished either way — and a wrong path degrades to the
+// the section reads as finished either way, and a wrong path degrades to the
 // wordmark too instead of showing a broken image.
 //
 // TODO KEVIN: use each brand's official press-kit asset, ideally a white or
-// single-colour SVG on transparent. Don't pull logos off Google Images —
+// single-colour SVG on transparent. Don't pull logos off Google Images:
 // they're trademarks, and the versions floating around are usually the wrong
 // lockup, the wrong colour, or a low-res JPEG with a white box behind it.
 export const COLLABORATIONS = [
@@ -98,9 +95,9 @@ export const COLLABORATIONS = [
 ];
 export const COLLABORATION_SLOTS_OPEN = 0;
 
-// --- Builder / NEXUS section ---------------------------------------------------
+// Builder / NEXUS section
 // No stack list and no job-title label here on purpose. A brand manager
-// doesn't buy "React, Supabase, Stripe" — that's CV material, and it reframes
+// doesn't buy "React, Supabase, Stripe". That's CV material, and it reframes
 // the page as a developer's rather than a creator's. What survives is the one
 // claim that works on both audiences: he built and runs the product himself.
 export const BUILDER = {
@@ -110,7 +107,7 @@ export const BUILDER = {
   ],
 };
 
-// --- Contact -------------------------------------------------------------------
+// Contact
 export const CONTACT_EMAIL = 'partnerships@kevingym.com';
 // TODO KEVIN: drop the PDF at public/media-kit.pdf, then set this.
 export const MEDIA_KIT_URL = null; // e.g. '/media-kit.pdf'

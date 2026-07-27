@@ -29,7 +29,7 @@ import {
 const clamp01 = (n) => Math.min(1, Math.max(0, n));
 
 /**
- * Hero — one centered column: eyebrow, name, slogan, actions, portrait.
+ * Hero. One centered column: eyebrow, name, slogan, actions, portrait.
  * The portrait deliberately runs past the fold: the cut-off frame is the
  * scroll cue, no arrow needed.
  */
@@ -100,7 +100,7 @@ const Hero = () => {
           >
             <Img
               src={null}
-              alt="Kevin Nguena — cinematic hero photo"
+              alt="Kevin Nguena, cinematic hero photo"
               ratio="aspect-[3/4]"
               placeholder="Portrait to add"
             />
@@ -150,11 +150,7 @@ const ProofBar = () => (
 );
 
 /**
- * Identity — the manifesto, centered, set light and large. One voice, no
- * alternating styles: the restraint is the point.
- */
-/**
- * Identity — the one section that is only words. It carries the brand itself
+ * Identity. The one section that is only words. It carries the brand itself
  * (discipline, focus, lock in), so it gets the page's most generous spacing
  * and its opening line is set at hero scale. Deliberately not a grid of
  * "values" with icons: on this page the restraint is the argument.
@@ -193,7 +189,7 @@ const Work = () => (
         <Reveal key={item.id} delay={(i % 3) * 90} className="group">
           <Img
             src={item.image}
-            alt={`${item.title} — ${item.note}`}
+            alt={`${item.title}, ${item.note}`}
             ratio="aspect-[3/4]"
             placeholder="Photo / video to add"
           />
@@ -264,10 +260,10 @@ const Partnerships = () => (
 
 const Builder = () => (
   // No overflow-hidden here on purpose: the sphere bleeds into the sections
-  // above and below rather than being clipped square at the zone's edges —
-  // that bleed is what makes the glow read as organic instead of a cutout.
+  // above and below rather than being clipped square at the zone's edges.
+  // That bleed is what makes the glow read as organic instead of a cutout.
   <section id="builder" className="nx-zone relative">
-    {/* The radial gradient itself fades to transparent — no extra rectangular
+    {/* The radial gradient itself fades to transparent, no extra rectangular
         mask on top, that was the flat edge cutting across the round glow.
         Centered (both axes) so it bleeds evenly above and below the zone,
         and wrapped in Reveal so it fades in on scroll like everything else. */}
@@ -279,7 +275,7 @@ const Builder = () => (
 
     <div className="kg-wrap relative py-28 sm:py-40">
       <div className="text-center">
-        {/* Greeting: the first thing you see entering this zone — a quiet
+        {/* Greeting: the first thing you see entering this zone, a quiet
             "hello" before the section explains itself. */}
         <Reveal>
           <p className="kg-display text-[clamp(1.8rem,5vw,3rem)] text-kg-white">Hello.</p>
@@ -313,7 +309,7 @@ const Contact = () => (
     className="border-t border-kg-border"
   >
     <div className="text-center">
-      {/* The email is the deliverable of this whole page — display size,
+      {/* The email is the deliverable of this whole page, at display size,
           not hidden behind a small pill. */}
       {CONTACT_EMAIL && (
         <Reveal>

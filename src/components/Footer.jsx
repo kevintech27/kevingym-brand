@@ -10,7 +10,7 @@ export const Footer = () => (
           KEVINGYM
         </div>
         <p className="mt-4 text-sm font-light tracking-copy text-kg-dim">
-          {PERSON.name} — {PERSON.roles.join(' · ')}
+          {PERSON.name} · {PERSON.roles.join(' · ')}
         </p>
       </div>
 
