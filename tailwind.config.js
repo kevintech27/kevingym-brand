@@ -3,11 +3,14 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
-      // KEVINGYM SYSTEM: base charter, whole site.
-      // Pure black, white, and two greys. No color accent anywhere in this
-      // zone. The only "accent" is white-on-black and type-scale contrast.
-      // NEXUS: builder section only.
-      // Cyan never leaks outside the `nx-` scoped classes below.
+      // KEVINGYM Brand System.
+      // Base palette, whole site: pure black, white, and two greys. The only
+      // "accent" in the base palette is white-on-black and type-scale contrast.
+      //
+      // A single restrained accent (cyan/blue) exists for the builder zone and
+      // is reachable only through the `kg-accent-*` scoped classes in
+      // index.css. It never leaks into the hero, the nav, the stats, the CTAs
+      // or the footer.
       colors: {
         kg: {
           black: '#000000',
@@ -17,24 +20,22 @@ export default {
           white: '#FFFFFF',
           muted: '#A1A1AA',
           dim: '#52525B',
-        },
-        nx: {
-          bg: '#000000',
-          cyan: '#00FFFF',
-          violet: '#6D28D9',
-          border: 'rgba(0, 255, 255, 0.16)',
-          surface: 'rgba(0, 255, 255, 0.04)',
+          accent: '#00E5FF',
+          accentDeep: '#094FB8',
+          accentBorder: 'rgba(0, 229, 255, 0.16)',
+          accentSurface: 'rgba(0, 229, 255, 0.04)',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-        display: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
-        // Mono stays reserved for the NEXUS/builder zone only.
-        mono: ['"Share Tech Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        // Geist for text and display, Geist Mono for the accent zone.
+        sans: ['Geist', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+        // Mono stays reserved for the builder / accent zone only.
+        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       // Optical tracking: the bigger the type, the tighter it sets. This is
-      // the single biggest difference between "web default" and the Apple /
-      // Google headline register.
+      // the single biggest difference between "web default" and the editorial
+      // headline register this site is aiming at.
       letterSpacing: {
         label: '0.2em',
         display: '-0.035em',
@@ -54,20 +55,32 @@ export default {
       keyframes: {
         // Entrance: fade + lift + de-blur. The blur is what makes it read as
         // "focusing into place" rather than a plain slide.
+        //
+        // The final frame resolves the filter to `none`, not to `blur(0)`.
+        // A filter left on the element after the animation, even a
+        // zero-radius one, promotes it to its own compositing layer, and
+        // Chromium then refuses to paint any background-clip:text inside
+        // that layer. Every display headline on the site went invisible on
+        // black until this was changed.
         rise: {
           '0%': { opacity: '0', transform: 'translateY(24px) scale(0.985)', filter: 'blur(8px)' },
-          '100%': { opacity: '1', transform: 'translateY(0) scale(1)', filter: 'blur(0)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)', filter: 'none' },
         },
         soften: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        // Opacity only, deliberately. Animating `scale` on a 760px element
+        // carrying a 120px blur forces the compositor to re-rasterise the
+        // whole blurred layer every frame: on a mid-range phone that is the
+        // difference between a smooth page and a hot one. The breathing
+        // reads the same with opacity alone.
         breathe: {
-          '0%, 100%': { opacity: '0.72', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.06)' },
+          '0%, 100%': { opacity: '0.68' },
+          '50%': { opacity: '1' },
         },
         // Slow, gentle contour morph. Makes a perfect circle drift like a
-        // liquid blob instead of a rigid disc. NEXUS sphere only.
+        // liquid blob instead of a rigid disc. Accent sphere only.
         fluid: {
           '0%, 100%': { borderRadius: '42% 58% 65% 35% / 45% 40% 60% 55%' },
           '25%': { borderRadius: '60% 40% 45% 55% / 55% 60% 40% 45%' },
@@ -92,7 +105,7 @@ export default {
         rise: 'rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both',
         soften: 'soften 1s ease both',
         breathe: 'breathe 11s ease-in-out infinite',
-        'nx-fluid': 'breathe 11s ease-in-out infinite, fluid 22s ease-in-out infinite',
+        'accent-fluid': 'breathe 11s ease-in-out infinite, fluid 22s ease-in-out infinite',
         drip: 'drip 2.2s ease-in-out infinite',
         marquee: 'marquee 48s linear infinite',
       },

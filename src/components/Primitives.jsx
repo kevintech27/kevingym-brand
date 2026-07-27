@@ -1,24 +1,26 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+﻿import { useCallback, useEffect, useRef, useState } from 'react';
 
 // KEVINGYM Brand System: shared visual primitives.
 // Register: precision over ornament. One display face, one text face, one
-// motion curve. Everything that moves uses the same easing so the page reads
+// motion curve. Everything that moves uses the same easing so the site reads
 // as a single mechanism rather than a stack of effects.
 
-/** Utility label. `tone="nexus"` is only ever used inside `.nx-zone`. */
+/** Utility label. `tone="accent"` is only ever used inside `.kg-accent-zone`. */
 export const Label = ({ children, tone = 'dim', className = '' }) => (
-  <span className={`${tone === 'nexus' ? 'nx-label' : 'kg-label'} ${className}`}>{children}</span>
+  <span className={`${tone === 'accent' ? 'kg-label-accent' : 'kg-label'} ${className}`}>
+    {children}
+  </span>
 );
 
 /** Thin horizontal rule, used to pace sections. */
 export const Rule = ({ className = '' }) => <div className={`kg-rule ${className}`} />;
 
 /**
- * Signature aura: a soft radial glow behind the content. Renders exactly
- * twice on the page: white in the hero, cyan/violet in the builder zone.
+ * Signature aura: a soft radial glow behind the content. White everywhere,
+ * accented in the builder zone only.
  */
 export const Aura = ({ tone = 'white', className = '' }) => (
-  <div aria-hidden className={`kg-aura ${tone === 'nexus' ? 'nx-aura' : ''} ${className}`} />
+  <div aria-hidden className={`kg-aura ${tone === 'accent' ? 'kg-aura-accent' : ''} ${className}`} />
 );
 
 /**
@@ -100,7 +102,7 @@ export const Card = ({ children, className = '', ...rest }) => {
 
 /**
  * Editorial section: a label, a title, a body. `align="center"` gives the
- * Apple-style centered header used by the wider sections.
+ * centered header used by the wider sections.
  */
 export const Section = ({
   id,
@@ -121,7 +123,10 @@ export const Section = ({
             {label && (
               <div className={`flex items-center gap-5 ${centered ? 'justify-center' : ''}`}>
                 {centered && (
-                  <span aria-hidden className="hidden h-px w-16 bg-gradient-to-l from-kg-border to-transparent sm:block" />
+                  <span
+                    aria-hidden
+                    className="hidden h-px w-16 bg-gradient-to-l from-kg-border to-transparent sm:block"
+                  />
                 )}
                 <Label>{label}</Label>
                 <span
@@ -153,6 +158,40 @@ export const Section = ({
 };
 
 /**
+ * PageHead: the opening block of every route other than the home page. Keeps
+ * the eight pages on one rhythm: eyebrow, display title, one paragraph.
+ */
+export const PageHead = ({ eyebrow, title, intro, children }) => (
+  <section className="relative overflow-hidden border-b border-kg-border">
+    <div className="pointer-events-none absolute left-1/2 top-[-40%] h-[620px] w-[620px] -translate-x-1/2">
+      <Aura className="inset-0" />
+    </div>
+    <div className="kg-wrap relative pb-20 pt-36 text-center sm:pb-24 sm:pt-44">
+      <Reveal>
+        <Label>{eyebrow}</Label>
+      </Reveal>
+      <Reveal delay={90}>
+        <h1 className="kg-display kg-shade mt-7 text-[clamp(2.5rem,8vw,6rem)]">{title}</h1>
+      </Reveal>
+      {intro && (
+        <Reveal delay={170}>
+          <p className="mx-auto mt-8 max-w-measure text-lg font-light leading-relaxed tracking-copy text-kg-muted sm:text-xl">
+            {intro}
+          </p>
+        </Reveal>
+      )}
+      {children && (
+        <Reveal delay={250}>
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+            {children}
+          </div>
+        </Reveal>
+      )}
+    </div>
+  </section>
+);
+
+/**
  * Reveal: animates a block in when it enters the viewport. IntersectionObserver
  * rather than a library: zero dependency, and disabled automatically via
  * prefers-reduced-motion (see index.css).
@@ -167,6 +206,14 @@ export const Reveal = ({ children, delay = 0, className = '' }) => {
       setShown(true);
       return undefined;
     }
+
+    // Fail open. The hidden state here is an entrance effect, never a
+    // feature, so nothing may depend on the observer actually firing. It
+    // does not fire in a background tab, and a page restored into one would
+    // otherwise render as a black screen with no text on it at all. The
+    // timer guarantees the content appears whatever the browser decides.
+    const safety = window.setTimeout(() => setShown(true), 1200);
+
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -177,7 +224,10 @@ export const Reveal = ({ children, delay = 0, className = '' }) => {
       { threshold: 0.12, rootMargin: '0px 0px -60px 0px' },
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      window.clearTimeout(safety);
+      io.disconnect();
+    };
   }, []);
 
   return (
@@ -201,6 +251,7 @@ export const Img = ({
   alt,
   ratio = 'aspect-[4/5]',
   placeholder = 'Photo to add',
+  eager = false,
   className = '',
 }) => {
   const [failed, setFailed] = useState(!src);
@@ -218,9 +269,13 @@ export const Img = ({
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.09] via-white/[0.02] to-transparent"
         />
-        <span className="relative text-sm font-light tracking-copy text-kg-muted">{placeholder}</span>
+        <span className="relative text-sm font-light tracking-copy text-kg-muted">
+          {placeholder}
+        </span>
         <span aria-hidden className="relative h-px w-10 bg-kg-border" />
-        <span className="relative max-w-[80%] text-xs font-light leading-relaxed text-kg-dim">{alt}</span>
+        <span className="relative max-w-[80%] text-xs font-light leading-relaxed text-kg-dim">
+          {alt}
+        </span>
       </div>
     );
   }
@@ -230,7 +285,8 @@ export const Img = ({
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
         onError={() => setFailed(true)}
         className="h-full w-full object-cover transition-transform duration-[1200ms] ease-apple group-hover:scale-[1.04]"
       />
@@ -306,7 +362,7 @@ export const Stat = ({ label, value }) => {
 export const Todo = ({ children, tone = 'dim' }) => (
   <div
     className={`rounded-2xl border px-6 py-5 ${
-      tone === 'nexus' ? 'nx-glass' : 'border-kg-border bg-kg-surface'
+      tone === 'accent' ? 'kg-glass-accent' : 'border-kg-border bg-kg-surface'
     }`}
   >
     <Label tone={tone}>To fill in</Label>

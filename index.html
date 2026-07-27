@@ -4,57 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#000000" />
 
     <!-- Canonical domain of the PERSONAL BRAND: kevingym.com (apex).
          The HYBRID programme lives on kevingymworkout.com: never
-         canonicalize one toward the other. -->
+         canonicalize one toward the other. RouteMeta rewrites the canonical,
+         the title, the description and the Open Graph tags per route. -->
     <link rel="canonical" href="https://kevingym.com/" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
 
-    <title>Kevin Nguena · KEVINGYM | Content Creator, Hybrid Athlete, Founder</title>
+    <title>Kevin Nguena | KEVINGYM, Content Creator, Hybrid Athlete, Founder</title>
     <meta
       name="description"
-      content="Official site of Kevin Nguena. Content creator, hybrid athlete, and founder of KEVINGYM. Brand collaborations, premium gym partnerships, and media kit."
+      content="Official site of Kevin Nguena. Content creator, hybrid athlete, and founder of KEVINGYM. Brand collaborations, gym partnerships, and the HYBRID training system."
     />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KEVINGYM" />
-    <meta property="og:title" content="Kevin Nguena · KEVINGYM" />
+    <meta property="og:title" content="Kevin Nguena | KEVINGYM" />
     <meta
       property="og:description"
       content="Content creator, hybrid athlete, and founder of KEVINGYM. Brand collaborations and gym partnerships."
     />
     <meta property="og:url" content="https://kevingym.com/" />
+    <meta property="og:image" content="https://kevingym.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="KEVINGYM, Kevin Nguena" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kevin Nguena | KEVINGYM" />
+    <meta
+      name="twitter:description"
+      content="Content creator, hybrid athlete, and founder of KEVINGYM. Brand collaborations and gym partnerships."
+    />
+    <meta name="twitter:image" content="https://kevingym.com/og.png" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Kevin Nguena",
-        "alternateName": "KevinGym",
-        "url": "https://kevingym.com/",
-        "jobTitle": "Content creator and founder",
-        "sameAs": [
-          "https://www.instagram.com/kevingym27/",
-          "https://www.tiktok.com/@kevingym27"
-        ],
-        "worksFor": {
-          "@type": "Organization",
-          "name": "KEVINGYM",
-          "url": "https://kevingymworkout.com/"
-        }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://kevingym.com/#website",
+            "url": "https://kevingym.com/",
+            "name": "KEVINGYM",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://kevingym.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://kevingym.com/#person",
+            "name": "Kevin Nguena",
+            "alternateName": "KevinGym",
+            "url": "https://kevingym.com/",
+            "image": "https://kevingym.com/og.png",
+            "jobTitle": "Content creator, hybrid athlete and founder",
+            "knowsAbout": ["Hybrid training", "Strength training", "Fitness content"],
+            "sameAs": [
+              "https://www.instagram.com/kevingym27/",
+              "https://www.tiktok.com/@kevingym27"
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "name": "KEVINGYM",
+              "url": "https://kevingymworkout.com/"
+            }
+          }
+        ]
       }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- One display face, one text face, one mono. Variable ranges so the
-         optical weights (500/600 for large headlines) are available. The
-         Apple/Google register is semibold-at-huge-size, not black. -->
+    <!-- Geist for text and display, Geist Mono for the accent zone. Variable
+         ranges so the optical weights (500/600 for large headlines) are
+         available. The register is semibold-at-huge-size, not black. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=Inter:wght@300..700&family=Share+Tech+Mono&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@300..600&display=swap"
       rel="stylesheet"
     />
   </head>

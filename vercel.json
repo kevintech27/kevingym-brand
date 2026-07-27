@@ -14,6 +14,7 @@
     { "source": "/set-password", "destination": "https://kevingymworkout.com/set-password", "permanent": false },
     { "source": "/auth/:path*", "destination": "https://kevingymworkout.com/auth/:path*", "permanent": false },
     { "source": "/dashboard", "destination": "https://kevingymworkout.com/dashboard", "permanent": false },
+    { "source": "/dashboard/:path*", "destination": "https://kevingymworkout.com/dashboard/:path*", "permanent": false },
 
     { "source": "/cgv", "destination": "https://kevingymworkout.com/cgv", "permanent": true },
     { "source": "/mentions-legales", "destination": "https://kevingymworkout.com/mentions-legales", "permanent": true },
@@ -31,6 +32,14 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
       ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
     }
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "name": "KEVINGYM, Kevin Nguena",
+  "short_name": "KEVINGYM",
+  "description": "Official site of Kevin Nguena. Content creator, hybrid athlete, and founder of KEVINGYM.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

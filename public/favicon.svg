@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <defs>
     <clipPath id="r"><rect width="512" height="512" rx="96" ry="96"/></clipPath>
 
-    <!-- The site's signature aura, in its NEXUS state. Same shape as the one
-         behind the hero, same cyan→blue→navy falloff as `.nx-aura`, only
+    <!-- The site's signature aura, in its accent state. Same shape as the one
+         behind the hero, same cyanâ†’blueâ†’navy falloff as `.kg-aura-accent`, only
          scaled down to 512px and held at low opacity: at 16px the mark has to
          stay the subject, the glow is only there to say "there's a builder
          behind this brand". -->
@@ -29,7 +29,7 @@
     <!-- The glow sits ON TOP of the mark, not behind it: the logo PNG is a
          full-bleed 512x512 tile with an opaque background, so anything drawn
          underneath is completely hidden. `screen` makes it behave like actual
-         light — it lifts the black ground and leaves the white mark white. -->
+         light â€” it lifts the black ground and leaves the white mark white. -->
     <rect width="512" height="512" fill="url(#aura)" style="mix-blend-mode:screen"/>
     <rect x="1.5" y="1.5" width="509" height="509" rx="94.5" ry="94.5" fill="none" stroke="url(#rim)" stroke-width="3"/>
   </g>

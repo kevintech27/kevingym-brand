@@ -58,8 +58,8 @@
     background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
   }
 
-  /* Monochrome selection/focus everywhere in the SYSTEM zone. Color accents
-     (cyan) only exist inside `.nx-zone`. See the NEXUS overrides below. */
+  /* Monochrome selection and focus across the whole site. The colour accent
+     exists only inside `.kg-accent-zone`. See the accent overrides below. */
   ::selection {
     background: #ffffff;
     color: #000000;
@@ -95,7 +95,7 @@
 
 @layer components {
   /* Editorial eyebrow label: wide-tracked sans, never mono. The technical
-     register lives exclusively in the NEXUS zone. */
+     register lives exclusively in the accent zone. */
   .kg-label {
     @apply font-sans text-[11px] font-medium uppercase tracking-label text-kg-dim;
   }
@@ -114,19 +114,19 @@
   }
 
   /* Display type
-     Two treatments, used everywhere so the page reads as one voice. */
+     Two treatments, used everywhere so the site reads as one voice. */
 
   /* Hero / section headline: large, semibold, optically tight. */
   .kg-display {
     @apply font-display font-semibold leading-[0.95] tracking-display;
   }
 
-  /* Light falls off down a tall letterform. A vertical white→grey clip makes
-     huge type sit *in* the black instead of on top of it.
+  /* Light falls off down a tall letterform. A vertical white to grey clip
+     makes huge type sit *in* the black instead of on top of it.
      Deliberately shallow: at a steeper ramp a one-line headline reads as
      washed out, and a two-line one turns its second line grey. */
   .kg-shade {
-    background: linear-gradient(180deg, #ffffff 0%, #ffffff 45%, rgba(255, 255, 255, 0.82) 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 62%, rgba(255, 255, 255, 0.9) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -139,10 +139,22 @@
     margin-bottom: -0.18em;
   }
 
+  /* Chrome's built-in page translation wraps every text node in a <font>
+     element. The heading is then left with no text of its own to clip its
+     background to, and a headline set this way vanishes completely: black
+     on black. Kevin's audience is largely French reading an English site,
+     so Chrome offers that translation constantly. Re-applying the clip to
+     the injected element is what keeps the headline visible for them. */
+  .kg-shade font {
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   /* Buttons
-     Sentence case, not uppercase: the Apple/Google control register. The
-     shadow is a soft white bloom, which on OLED black reads as emitted light
-     rather than a drop shadow. */
+     Sentence case, not uppercase. The shadow is a soft white bloom, which on
+     OLED black reads as emitted light rather than a drop shadow. */
   .kg-btn {
     @apply relative inline-flex items-center justify-center gap-2 rounded-full
            bg-kg-white px-7 py-3.5 font-sans text-[13.5px] font-semibold tracking-copy text-kg-black
@@ -164,7 +176,7 @@
     transition-duration: 120ms;
   }
 
-  /* Secondary button: glass outline, monochrome hover, never cyan here. */
+  /* Secondary button: glass outline, monochrome hover, never accented. */
   .kg-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-kg-border
            bg-white/[0.03] px-7 py-3.5 font-sans text-[13.5px] font-medium tracking-copy text-kg-muted
@@ -174,9 +186,9 @@
 
   /* Materials */
 
-  /* Glass surface: used by the nav pill and cards in both zones. The
-     saturation boost is what separates real Apple glass from a plain blur:
-     it lets the color underneath bleed through instead of going grey. */
+  /* Glass surface: used by the nav pill and by cards. The saturation boost is
+     what separates real glass from a plain blur: it lets the colour
+     underneath bleed through instead of going grey. */
   .kg-glass {
     /* The diagonal tint is doing most of the work. backdrop-filter only has
        something to blur where content passes underneath, so on the flat black
@@ -196,8 +208,7 @@
       0 24px 60px -34px rgba(0, 0, 0, 1);
   }
 
-  /* Content card: the same pane, at a lower intensity so a grid of six does
-     not shout. Four layers of light: the diagonal tint, an inner top edge, a
+  /* Content card. Three layers of light: a top hairline catching an edge, a
      cursor-tracked spotlight, and a lift on hover. */
   .kg-card {
     @apply relative overflow-hidden rounded-[28px] border border-kg-border
@@ -265,7 +276,7 @@
     mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
   }
 
-  /* Swipe underline: draws itself left→right on hover. Used for the giant
+  /* Swipe underline: draws itself left to right on hover. Used for the giant
      contact email. */
   .kg-underline-swipe {
     background-image: linear-gradient(currentColor, currentColor);
@@ -280,9 +291,9 @@
     background-size: 100% 0.05em;
   }
 
-  /* Signature aura: a soft radial glow, breathing slowly. Appears exactly
-     twice on the page: white in the hero, cyan/violet in the builder zone
-     (see .nx-aura). Color is driven by --aura-color so both share one shape. */
+  /* Signature aura: a soft radial glow, breathing slowly. White by default,
+     accented inside the builder zone (see .kg-aura-accent). Colour is driven
+     by --aura-color so both variants share one shape. */
   .kg-aura {
     --aura-color: rgba(255, 255, 255, 0.2);
     @apply pointer-events-none absolute rounded-full blur-[120px] animate-breathe;
@@ -295,18 +306,19 @@
   }
 }
 
-/* NEXUS: scoped strictly to `.nx-zone` (the builder section). Cyan/violet
-   must never be reachable outside this selector prefix. */
+/* Accent zone of the KEVINGYM Brand System.
+   Scoped strictly to `.kg-accent-zone` (the builder section). The cyan is
+   never reachable outside this selector prefix: that restraint is what gives
+   the zone its impact. */
 @layer components {
-  .nx-zone {
-    @apply bg-nx-bg;
+  .kg-accent-zone {
+    @apply bg-kg-black;
   }
 
-  /* Richer than the shared .kg-aura: a defined multi-stop sphere (bright
-     cyan core → blue → dark navy). Blue-dominant, almost no violet. Matches
-     the reference: darker and bluer, not purple. */
-  .nx-aura {
-    @apply blur-[85px] animate-nx-fluid;
+  /* Richer than the shared .kg-aura: a defined multi-stop sphere, bright
+     cyan core to blue to dark navy. Blue-dominant, almost no violet. */
+  .kg-aura-accent {
+    @apply blur-[85px] animate-accent-fluid;
     background: radial-gradient(
       circle,
       #4ddcd1 0%,
@@ -317,26 +329,26 @@
     );
   }
 
-  .nx-label {
-    @apply font-mono text-[10px] uppercase tracking-label text-nx-cyan;
+  .kg-label-accent {
+    @apply font-mono text-[10px] uppercase tracking-label text-kg-accent;
   }
 
-  .nx-glass {
-    @apply border border-nx-border bg-nx-surface backdrop-blur-xl;
+  .kg-glass-accent {
+    @apply border border-kg-accentBorder bg-kg-accentSurface backdrop-blur-xl;
   }
 
   /* This is the one place on the site where glass behaves like real glass.
      Everywhere else it sits on flat black and backdrop-filter has nothing to
-     work with; here the cyan aura passes underneath, so the blur and the
+     work with; here the accent aura passes underneath, so the blur and the
      saturation actually refract something. */
-  .nx-panel {
+  .kg-panel-accent {
     @apply relative overflow-hidden rounded-[28px] border px-7 py-10 sm:px-12 sm:py-12;
     border-color: rgba(255, 255, 255, 0.14);
     background: linear-gradient(
       155deg,
       rgba(255, 255, 255, 0.12) 0%,
       rgba(255, 255, 255, 0.04) 45%,
-      rgba(0, 255, 255, 0.03) 100%
+      rgba(0, 229, 255, 0.03) 100%
     );
     -webkit-backdrop-filter: saturate(170%) blur(22px);
     backdrop-filter: saturate(170%) blur(22px);
@@ -344,7 +356,6 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.26),
       0 40px 80px -40px rgba(0, 0, 0, 0.9);
   }
-
 }
 
 /* Respect users who limit motion. */
