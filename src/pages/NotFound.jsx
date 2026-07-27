@@ -1,23 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ECOSYSTEM } from '@/lib/brand';
 import { Label } from '@/components/Primitives';
 
 export default function NotFound() {
   return (
-    <section className="kg-wrap flex min-h-[70vh] flex-col justify-center py-24">
-      <Label accent>Erreur 404</Label>
-      <h1 className="mt-6 text-5xl font-semibold tracking-tight sm:text-7xl">Page introuvable.</h1>
-      <p className="mt-6 max-w-lg text-base leading-relaxed text-kg-fog">
-        Cette adresse n&apos;existe pas sur kevingym.com. Si tu cherchais le programme HYBRID, ton
-        compte ou ton espace membre, tout se trouve sur le site du programme.
+    <section className="kg-wrap flex min-h-[70vh] flex-col justify-center py-32 text-center">
+      <Label className="mx-auto">404</Label>
+      <h1 className="kg-display kg-shade mt-6 text-[clamp(2.4rem,7vw,5rem)]">Page not found.</h1>
+      <p className="mx-auto mt-8 max-w-measure text-lg font-light leading-relaxed tracking-copy text-kg-muted">
+        This address doesn&apos;t exist on kevingym.com. If you were looking for the HYBRID
+        programme, your account, or your member area, that all lives on the programme site.
       </p>
-      <div className="mt-10 flex flex-wrap gap-3">
-        <Link to="/" className="kg-btn">
-          Retour à l&apos;accueil
-        </Link>
+      <div className="mt-12 flex flex-wrap justify-center gap-3">
+        <a href="/" className="kg-btn">
+          Back home
+        </a>
         <a href={ECOSYSTEM.programme} className="kg-btn-ghost">
-          Site du programme
+          Programme site
         </a>
       </div>
     </section>

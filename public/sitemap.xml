@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Sitemap de la MARQUE PERSONNELLE kevingym.com.
-  Le programme HYBRID a son propre sitemap sur kevingymworkout.com : les deux
-  sites sont distincts et ne se referencent pas mutuellement comme canoniques.
+  Sitemap for the PERSONAL BRAND site kevingym.com.
+  The HYBRID programme has its own sitemap on kevingymworkout.com: the two
+  sites are distinct and never reference each other as canonical.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://kevingym.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://kevingym.com/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://kevingym.com/content</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://kevingym.com/partners</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://kevingym.com/partners/brands</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://kevingym.com/partners/gyms</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://kevingym.com/hybrid</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://kevingym.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

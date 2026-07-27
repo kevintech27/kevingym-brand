@@ -5,60 +5,317 @@
 @layer base {
   html {
     background-color: #000000;
+    /* Everything on this page is white type on pure black — subpixel
+       rendering would fringe it. Greyscale AA is what makes large light
+       type on dark read as crisp instead of bold-ish and muddy. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-kg-black text-kg-white font-sans antialiased;
-    /* Selection cyan discrete : rappel de l'accent sans l'imposer. */
+    letter-spacing: theme('letterSpacing.copy');
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
   }
 
+  /* Headlines never break into an orphan; body copy never leaves a widow. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Tabular figures everywhere a number is a measurement, not a word. */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Photographic grain over the whole page: kills the "flat digital black"
+     and makes gradients/auras read like film instead of banding. Kept very
+     low — at higher opacity it reads as noise on the type. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Screen-edge vignette. Barely perceptible on its own, but it stops the
+     viewport corners from competing with the aura for attention. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 79;
+    pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+  }
+
+  /* Monochrome selection/focus everywhere in the SYSTEM zone. Color accents
+     (cyan) only exist inside `.nx-zone` — see the NEXUS overrides below. */
   ::selection {
-    background: #22d3ee;
+    background: #ffffff;
     color: #000000;
   }
 
-  /* Focus visible sobre mais reel : accessibilite au clavier. */
   :focus-visible {
-    outline: 2px solid #22d3ee;
-    outline-offset: 3px;
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  /* Hairline scrollbar so the browser chrome doesn't break the black. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border: 3px solid #000;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.26);
   }
 }
 
 @layer components {
-  /* Label technique : petite capitale mono tres espacee. Signature du systeme. */
+  /* Editorial eyebrow label: wide-tracked sans, never mono — the technical
+     register lives exclusively in the NEXUS zone. */
   .kg-label {
-    @apply font-mono text-[10px] uppercase tracking-label text-kg-grey;
+    @apply font-sans text-[11px] font-medium uppercase tracking-label text-kg-dim;
   }
 
   .kg-rule {
-    @apply h-px w-full bg-kg-line;
+    @apply h-px w-full bg-kg-border;
   }
 
-  /* Conteneur editorial commun a toutes les sections. */
+  /* Shared editorial container. */
   .kg-wrap {
-    @apply mx-auto w-full max-w-editorial px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-editorial px-6 sm:px-8 lg:px-10;
   }
 
   .kg-link {
-    @apply text-kg-fog transition-colors duration-200 hover:text-kg-white;
+    @apply text-kg-muted transition-colors duration-300 ease-apple hover:text-kg-white;
   }
 
-  /* Bouton principal : blanc plein, forme capsule, tres lisible sur OLED. */
+  /* --- Display type -------------------------------------------------------
+     Two treatments, used everywhere so the page reads as one voice. */
+
+  /* Hero / section headline: large, semibold, optically tight. */
+  .kg-display {
+    @apply font-display font-semibold leading-[0.95] tracking-display;
+  }
+
+  /* Light falls off down a tall letterform. A vertical white→grey clip makes
+     huge type sit *in* the black instead of on top of it. */
+  .kg-shade {
+    background: linear-gradient(180deg, #ffffff 22%, rgba(255, 255, 255, 0.62) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* --- Buttons ------------------------------------------------------------
+     Sentence case, not uppercase: the Apple/Google control register. The
+     shadow is a soft white bloom, which on OLED black reads as emitted light
+     rather than a drop shadow. */
   .kg-btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-kg-white px-7 py-4
-           font-mono text-[11px] uppercase tracking-label text-kg-black
-           transition-all duration-200 hover:bg-kg-fog active:scale-[0.98];
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full
+           bg-kg-white px-7 py-3.5 font-sans text-[13.5px] font-semibold tracking-copy text-kg-black
+           transition-all duration-500 ease-apple;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 6px 26px -10px rgba(255, 255, 255, 0.45);
   }
 
-  /* Bouton secondaire : contour seulement. */
+  .kg-btn:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 14px 40px -12px rgba(255, 255, 255, 0.65);
+  }
+
+  .kg-btn:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 120ms;
+  }
+
+  /* Secondary button: glass outline, monochrome hover — never cyan here. */
   .kg-btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-kg-line px-7 py-4
-           font-mono text-[11px] uppercase tracking-label text-kg-fog
-           transition-all duration-200 hover:border-kg-cyan hover:text-kg-cyan active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-kg-border
+           bg-white/[0.03] px-7 py-3.5 font-sans text-[13.5px] font-medium tracking-copy text-kg-muted
+           backdrop-blur-xl transition-all duration-500 ease-apple
+           hover:border-white/25 hover:bg-white/[0.07] hover:text-kg-white active:scale-[0.98];
+  }
+
+  /* --- Materials ----------------------------------------------------------- */
+
+  /* Glass surface: used by the nav pill and cards in both zones. The
+     saturation boost is what separates real Apple glass from a plain blur —
+     it lets the color underneath bleed through instead of going grey. */
+  .kg-glass {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    backdrop-filter: saturate(180%) blur(24px);
+  }
+
+  /* Content card. Three layers of light: a top hairline catching an edge, a
+     cursor-tracked spotlight, and a lift on hover. */
+  .kg-card {
+    @apply relative overflow-hidden rounded-[28px] border border-kg-border bg-white/[0.022]
+           transition-all duration-500 ease-apple;
+  }
+
+  .kg-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: radial-gradient(
+      380px circle at var(--mx, 50%) var(--my, 0%),
+      rgba(255, 255, 255, 0.09),
+      transparent 68%
+    );
+  }
+
+  .kg-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+  }
+
+  .kg-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+  }
+
+  .kg-card:hover::before,
+  .kg-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Media frame: rounded, clipped, with a permanent inner hairline so the
+     photo edge never sits raw against the black. */
+  .kg-frame {
+    @apply relative overflow-hidden rounded-[28px] bg-white/[0.03];
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 40px 80px -40px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Edge-fade for the brand band: type dissolves instead of being cut. */
+  .kg-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  }
+
+  /* Swipe underline: draws itself left→right on hover. Used for the giant
+     contact email. */
+  .kg-underline-swipe {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 0.05em;
+    background-repeat: no-repeat;
+    background-position: left 0 bottom 0.02em;
+    transition: background-size 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .kg-underline-swipe:hover,
+  .kg-underline-swipe:focus-visible {
+    background-size: 100% 0.05em;
+  }
+
+  /* Signature aura: a soft radial glow, breathing slowly. Appears exactly
+     twice on the page — white in the hero, cyan/violet in the builder zone
+     (see .nx-aura). Color is driven by --aura-color so both share one shape. */
+  .kg-aura {
+    --aura-color: rgba(255, 255, 255, 0.14);
+    @apply pointer-events-none absolute rounded-full blur-[120px] animate-breathe;
+    background: radial-gradient(
+      circle,
+      var(--aura-color) 0%,
+      rgba(255, 255, 255, 0.05) 40%,
+      transparent 70%
+    );
   }
 }
 
-/* Respecte les utilisateurs qui limitent les animations. */
+/* ============================================================================
+   NEXUS — scoped strictly to `.nx-zone` (the builder section). Cyan/violet
+   must never be reachable outside this selector prefix.
+   ========================================================================= */
+@layer components {
+  .nx-zone {
+    @apply bg-nx-bg;
+  }
+
+  /* Richer than the shared .kg-aura: a defined multi-stop sphere (bright
+     cyan core → blue → dark navy). Blue-dominant, almost no violet — matches
+     the reference: darker and bluer, not purple. */
+  .nx-aura {
+    @apply blur-[85px] animate-nx-fluid;
+    background: radial-gradient(
+      circle,
+      #4ddcd1 0%,
+      #00b8cc 20%,
+      #094fb8 45%,
+      #050f2e 72%,
+      transparent 90%
+    );
+  }
+
+  .nx-label {
+    @apply font-mono text-[10px] uppercase tracking-label text-nx-cyan;
+  }
+
+  .nx-glass {
+    @apply border border-nx-border bg-nx-surface backdrop-blur-xl;
+  }
+
+  .nx-tag {
+    @apply rounded-full border border-nx-border bg-nx-surface px-4 py-2
+           font-mono text-[11px] uppercase tracking-label text-nx-cyan
+           transition-all duration-500 ease-apple;
+  }
+
+  .nx-tag:hover {
+    border-color: rgba(0, 255, 255, 0.4);
+    background: rgba(0, 255, 255, 0.08);
+    box-shadow: 0 0 24px -8px rgba(0, 255, 255, 0.5);
+  }
+
+  .nx-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-nx-border px-7 py-3.5
+           font-mono text-[11px] uppercase tracking-label text-nx-cyan
+           transition-all duration-500 ease-apple hover:bg-nx-surface active:scale-[0.98];
+  }
+}
+
+/* Respect users who limit motion. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

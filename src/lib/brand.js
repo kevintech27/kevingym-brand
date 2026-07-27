@@ -1,19 +1,15 @@
 // =============================================================================
-// KEVINGYM BRAND SYSTEM — donnees centrales du site personnel.
+// KEVINGYM BRAND SYSTEM — central data for the personal site.
 // -----------------------------------------------------------------------------
-// TOUT ce qui est chiffre, nominatif ou contractuel est regroupe ici pour etre
-// verifiable et modifiable en un seul endroit.
-//
-// Convention : un champ marque `verified: false` N'EST PAS affiche comme un
-// chiffre. Le composant Stat affiche alors un espace reserve explicite. On ne
-// publie pas d'audience inventee : c'est ce qui detruit la credibilite aupres
-// d'une marque, et cela peut engager juridiquement lors d'une negociation.
+// Everything numeric, named, or contractual lives here so it stays verifiable
+// and editable in one place. Kevin updates this file; the components only
+// render what's here — nothing is invented to "look" more impressive.
 // =============================================================================
 
 export const SITE_URL = 'https://kevingym.com';
 
-// Les autres briques de l'ecosysteme. Le programme a son propre domaine : on ne
-// duplique jamais sa page de vente ici, on y renvoie.
+// The rest of the ecosystem. The programme has its own domain: we never
+// duplicate its sales page here, only link out to it.
 export const ECOSYSTEM = {
   programme: 'https://kevingymworkout.com',
   programmeBuy: 'https://kevingymworkout.com/#pricing',
@@ -21,12 +17,30 @@ export const ECOSYSTEM = {
   links: 'https://links.kevingym.com',
 };
 
+// --- Proof bar ----------------------------------------------------------------
+// Single source of truth for the numbers shown under the hero.
+// Checked against the public TikTok/Instagram profiles on 2026-07-27:
+// TikTok 124.1K followers · 6.7M cumulative likes · pinned top video 8.9M views
+// Instagram 34K followers. Re-check every few weeks and round DOWN so the
+// site never overstates.
+export const STATS = [
+  { id: 'tiktok', label: 'TikTok', value: '124K' },
+  { id: 'instagram', label: 'Instagram', value: '34K' },
+  { id: 'top_post', label: 'Top Post', value: '8.9M Views' },
+  { id: 'likes', label: 'TikTok Likes', value: '6.7M' },
+  { id: 'reach', label: 'Reach', value: 'FR + International' },
+];
+
 export const PERSON = {
   name: 'Kevin Nguena',
   handle: 'KEVINGYM',
-  roles: ['Créateur de contenu', 'Athlète hybride', 'Fondateur'],
-  baseline:
-    "J'ai commencé chez moi, sans matériel. Aujourd'hui je construis KEVINGYM : du contenu, un programme, et une communauté qui s'entraîne vraiment.",
+  roles: ['Content Creator', 'Hybrid Athlete', 'Founder'],
+  slogan: 'BUILT BY COURAGE',
+  manifesto: [
+    "I train because it's the one thing that never lies to me about the work I put in.",
+    'Discipline over motivation, focus over noise. I build the same way I train: no shortcuts, no version that looks good but skips the reps.',
+    "That's the standard behind everything with my name on it — on camera or in the code.",
+  ],
   city: 'France',
 };
 
@@ -45,145 +59,42 @@ export const SOCIALS = [
   },
 ];
 
-// --- Chiffres d'audience -----------------------------------------------------
-// A REMPLIR PAR KEVIN. Tant que `verified` vaut false, rien n'est publie.
-// Renseigner `value` (ex. '48K') ET passer `verified` a true pour afficher.
-export const AUDIENCE = [
-  { id: 'ig', label: 'Instagram', value: null, verified: false },
-  { id: 'tt', label: 'TikTok', value: null, verified: false },
-  { id: 'views', label: 'Vues / 30 jours', value: null, verified: false },
-  { id: 'members', label: 'Membres HYBRID', value: null, verified: false },
+// --- Work / visuals gallery ---------------------------------------------------
+// `image: null` on every item for now — grey placeholders until real
+// cinematic content is shot, rather than reusing old casual selfies.
+export const WORK_ITEMS = [
+  { id: 'w1', title: 'Hybrid physique', note: 'To add', image: null },
+  { id: 'w2', title: 'Street workout', note: 'To add', image: null },
+  { id: 'w3', title: 'Where it started', note: 'To add', image: null },
+  { id: 'w4', title: 'Content shoot', note: 'To add', image: null },
+  { id: 'w5', title: 'Training session', note: 'To add', image: null },
+  { id: 'w6', title: 'Posing', note: 'To add', image: null },
 ];
 
-// --- Portfolio de contenu ----------------------------------------------------
-// `embed` : URL d'un post ou d'une video. Tant qu'elle est nulle, la carte
-// s'affiche en espace reserve, sans faire semblant.
-export const CONTENT_CATEGORIES = [
-  {
-    id: 'transformation',
-    title: 'Transformation',
-    desc: "Quatre ans de progression documentés, sans raccourci et sans filtre.",
-    items: [
-      { title: '15 → 19 ans', note: 'Le parcours complet', embed: null, image: '/images/kevin-start.jpg' },
-      { title: 'Street workout', note: 'Barres et poids du corps', embed: null, image: '/images/kevin-street.jpg' },
-      { title: 'Aujourd’hui', note: 'Physique hybride', embed: null, image: '/images/kevin-today.jpg' },
-    ],
-  },
-  {
-    id: 'training',
-    title: 'Entraînement',
-    desc: 'Séances filmées, exécution technique, progressions expliquées.',
-    items: [
-      { title: 'Push / Pull', note: 'Format vertical', embed: null, image: null },
-      { title: 'Poids du corps', note: 'Sans matériel', embed: null, image: null },
-      { title: 'Force', note: 'Barre libre', embed: null, image: null },
-    ],
-  },
-  {
-    id: 'posing',
-    title: 'Posing & physique',
-    desc: 'Mise en valeur du travail esthétique, lumière et cadrage soignés.',
-    items: [
-      { title: 'Studio', note: 'Série photo', embed: null, image: null },
-      { title: 'Extérieur', note: 'Lumière naturelle', embed: null, image: null },
-    ],
-  },
-  {
-    id: 'lifestyle',
-    title: 'Lifestyle',
-    desc: 'Le quotidien derrière la discipline : nutrition, récupération, routine.',
-    items: [
-      { title: 'Journée type', note: 'Vlog', embed: null, image: null },
-      { title: 'Nutrition', note: 'Format court', embed: null, image: null },
-    ],
-  },
-  {
-    id: 'sponsored',
-    title: 'Contenus sponsorisés',
-    desc: 'Intégrations réalisées pour des marques, dans mon ton, sans rupture éditoriale.',
-    items: [],
-  },
-];
+export const DELIVERABLES = ['Instagram Reels', 'TikTok', 'UGC', 'Shoots', 'Long-form'];
 
-// --- Collaborations ----------------------------------------------------------
-// A REMPLIR. Aucune marque n'est affichee tant que la liste est vide : afficher
-// de faux logos partenaires serait trompeur pour les marques qui te contactent.
-export const COLLABORATIONS = [];
-
-// --- Services proposes aux marques -------------------------------------------
-export const BRAND_SERVICES = [
-  {
-    title: 'Contenu vertical',
-    desc: 'Reels et TikTok pensés pour la rétention, tournés et montés par mes soins.',
-  },
-  {
-    title: 'Intégration produit',
-    desc: "Le produit apparaît dans un vrai entraînement, pas dans un décor. C'est ce qui convertit.",
-  },
-  {
-    title: 'Série de contenus',
-    desc: 'Campagne sur plusieurs semaines, avec un fil narratif et des formats déclinés.',
-  },
-  {
-    title: 'Ambassadeur',
-    desc: 'Partenariat long terme : présence régulière, code dédié, retours produit.',
-  },
+// --- Partnerships --------------------------------------------------------------
+// `desc: null` renders an explicit "to fill in" placeholder — never a
+// fabricated deliverable. A brand that catches an invented result won't
+// come back.
+export const COLLABORATIONS = [
+  { name: 'DFYNE', desc: null, result: null },
+  { name: 'Prozis', desc: null, result: null },
+  { name: 'Under Armour', desc: null, result: null },
 ];
+export const COLLABORATION_SLOTS_OPEN = 0;
 
-// --- Services proposes aux salles de sport ------------------------------------
-export const GYM_SERVICES = [
-  {
-    title: 'Visite et repérage',
-    desc: 'Je viens sur place, je repère les espaces et la lumière avant de tourner.',
-  },
-  {
-    title: 'Mise en valeur des espaces',
-    desc: 'Plateau, zone street workout, cardio, espace fonctionnel : chaque zone filmée pour donner envie.',
-  },
-  {
-    title: 'Équipement en situation',
-    desc: 'Les machines montrées en usage réel, avec la technique correcte.',
-  },
-  {
-    title: 'Feature sur mes réseaux',
-    desc: 'La salle identifiée et présentée à mon audience, pas juste taguée.',
-  },
-  {
-    title: 'Partenariat récurrent',
-    desc: 'Tournages réguliers dans la salle, contenu frais chaque mois.',
-  },
-];
+// --- Builder / NEXUS section ---------------------------------------------------
+export const BUILDER = {
+  label: '// SYSTEM ARCHITECT',
+  facts: [
+    "Technology is the other thing I never got tired of — I like understanding how systems are put together, not just using them.",
+    'KEVINGYM itself is a platform I built and run myself, end to end.',
+  ],
+  stack: ['React', 'Tailwind', 'Supabase', 'Stripe', 'Vercel'],
+};
 
-// --- Parcours ----------------------------------------------------------------
-export const JOURNEY = [
-  {
-    year: '15 ans',
-    title: 'Les pompes, dans une chambre',
-    body: "Pas de salle, pas de matériel, pas de coach. Juste des pompes, des squats et de la répétition. C'est là que la discipline s'installe — bien avant les résultats.",
-    image: '/images/kevin-start.jpg',
-  },
-  {
-    year: '16 → 17 ans',
-    title: 'Poids du corps et street workout',
-    body: 'Barres de parc, tractions, dips, progressions. Le corps se construit, mais surtout la méthode : comprendre pourquoi un mouvement fonctionne avant de le charger.',
-    image: '/images/kevin-street.jpg',
-  },
-  {
-    year: '18 ans',
-    title: 'La salle et la charge',
-    body: "L'entraînement structuré, la progression en charge, le suivi. Le physique change de dimension. Les deux mondes — force et esthétique — commencent à se rejoindre.",
-    image: null,
-  },
-  {
-    year: '19 ans',
-    title: 'Le contenu et la marque',
-    body: "Je documente tout. L'audience arrive parce que le travail est réel, pas parce qu'il est mis en scène. KEVINGYM devient une marque.",
-    image: '/images/kevin-today.jpg',
-  },
-  {
-    year: 'Aujourd’hui',
-    title: 'HYBRID et la suite',
-    body: "Un seul programme, celui que j'utilise vraiment. Une application pour le suivre. Et une vision longue : bâtir un écosystème fitness crédible, pas une audience jetable.",
-    image: null,
-  },
-];
+// --- Contact -------------------------------------------------------------------
+export const CONTACT_EMAIL = 'partnerships@kevingym.com';
+// TODO KEVIN: drop the PDF at public/media-kit.pdf, then set this.
+export const MEDIA_KIT_URL = null; // e.g. '/media-kit.pdf'

@@ -1,113 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { ECOSYSTEM } from '@/lib/brand';
+import React from 'react';
+import { useScrollY } from '@/components/Primitives';
+
+// =============================================================================
+// Nav — floating pill, fixed top, monochrome.
+// -----------------------------------------------------------------------------
+// The site is a single scrolling page: no route menu, no hamburger. The pill
+// is weightless over the hero and only condenses into glass once content is
+// scrolling underneath it — the material appears when it has a job to do.
+// =============================================================================
 
 const LINKS = [
-  { to: '/about', label: 'Parcours' },
-  { to: '/content', label: 'Contenu' },
-  { to: '/partners', label: 'Partenariats' },
-  { to: '/hybrid', label: 'HYBRID' },
-  { to: '/contact', label: 'Contact' },
+  { href: '#work', label: 'Work' },
+  { href: '#partnerships', label: 'Partnerships' },
+  { href: '#builder', label: 'Builder' },
 ];
 
 export const Nav = () => {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { pathname } = useLocation();
-
-  useEffect(() => setOpen(false), [pathname]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  // Empeche le defilement de l'arriere-plan quand le menu mobile est ouvert.
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [open]);
+  const y = useScrollY();
+  const condensed = y > 24;
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled ? 'border-kg-line bg-kg-black/85 backdrop-blur-md' : 'border-transparent bg-transparent'
-      }`}
-    >
-      <div className="kg-wrap flex h-[72px] items-center justify-between">
-        {/* Le logo renvoie a l'accueil de la MARQUE, jamais au programme. */}
-        <Link to="/" className="font-mono text-sm font-medium uppercase tracking-label">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+      <div
+        className={`flex items-center gap-2 rounded-full transition-all duration-700 ease-apple sm:gap-4 ${
+          condensed
+            ? 'kg-glass py-2 pl-5 pr-2 shadow-[0_20px_50px_-30px_rgba(0,0,0,1)]'
+            : 'border border-transparent py-2.5 pl-5 pr-2'
+        }`}
+      >
+        <a
+          href="#top"
+          className="font-display text-[13px] font-bold uppercase tracking-[0.24em] text-kg-white transition-opacity duration-300 ease-apple hover:opacity-70"
+        >
           KEVINGYM
-        </Link>
+        </a>
 
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav aria-label="Sections" className="hidden items-center md:flex">
           {LINKS.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) =>
-                `font-mono text-[11px] uppercase tracking-label transition-colors duration-200 ${
-                  isActive ? 'text-kg-cyan' : 'text-kg-grey hover:text-kg-white'
-                }`
-              }
+            <a
+              key={l.href}
+              href={l.href}
+              className="rounded-full px-4 py-2 text-[13px] font-medium tracking-copy text-kg-muted transition-colors duration-300 ease-apple hover:text-kg-white"
             >
               {l.label}
-            </NavLink>
+            </a>
           ))}
-          {/* Sortie vers le site du programme : lien externe explicite. */}
-          <a href={ECOSYSTEM.programme} className="kg-btn px-6 py-3">
-            Le programme
-          </a>
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-          className="flex h-11 w-11 items-center justify-center md:hidden"
-        >
-          <span className="relative block h-3 w-6">
-            <span
-              className={`absolute left-0 block h-px w-6 bg-kg-white transition-transform duration-300 ${
-                open ? 'top-1.5 rotate-45' : 'top-0'
-              }`}
-            />
-            <span
-              className={`absolute left-0 block h-px w-6 bg-kg-white transition-transform duration-300 ${
-                open ? 'top-1.5 -rotate-45' : 'top-3'
-              }`}
-            />
-          </span>
-        </button>
+        <a href="#contact" className="kg-btn ml-1 px-5 py-2.5 text-[12.5px]">
+          Work with me
+        </a>
       </div>
-
-      {open && (
-        <div className="animate-soften border-t border-kg-line bg-kg-black md:hidden">
-          <nav className="kg-wrap flex flex-col py-6">
-            {LINKS.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                className={({ isActive }) =>
-                  `border-b border-kg-line py-5 font-mono text-xs uppercase tracking-label ${
-                    isActive ? 'text-kg-cyan' : 'text-kg-fog'
-                  }`
-                }
-              >
-                {l.label}
-              </NavLink>
-            ))}
-            <a href={ECOSYSTEM.programme} className="kg-btn mt-7">
-              Le programme HYBRID
-            </a>
-          </nav>
-        </div>
-      )}
     </header>
   );
 };

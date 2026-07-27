@@ -17,44 +17,9 @@ import { SITE_URL } from '@/lib/brand';
 
 const META = {
   '/': {
-    title: 'Kevin Nguena — KEVINGYM | Créateur, athlète, entrepreneur',
+    title: 'Kevin Nguena — KEVINGYM | Content Creator, Hybrid Athlete, Founder',
     description:
-      "Site officiel de Kevin Nguena. Créateur de contenu fitness, athlète hybride et fondateur de KEVINGYM. Collaborations marques, partenariats salles et media kit.",
-  },
-  '/about': {
-    title: 'Parcours — Kevin Nguena | KEVINGYM',
-    description:
-      "Des pompes dans une chambre au street workout, puis à la salle et à la création de contenu : le parcours complet de Kevin Nguena et la vision derrière KEVINGYM.",
-  },
-  '/content': {
-    title: 'Contenu — Kevin Nguena | KEVINGYM',
-    description:
-      'Portfolio de contenu : transformation, entraînement, posing, lifestyle et intégrations de marque.',
-  },
-  '/partners': {
-    title: 'Partenariats — KEVINGYM',
-    description:
-      'Collaborer avec Kevin Nguena : partenariats marques et partenariats salles de sport.',
-  },
-  '/partners/brands': {
-    title: 'Pour les marques — KEVINGYM',
-    description:
-      "Media kit, audience, formats de contenu et services proposés aux marques qui veulent une intégration crédible dans l'univers fitness.",
-  },
-  '/partners/gyms': {
-    title: 'Pour les salles de sport — KEVINGYM',
-    description:
-      'Mise en valeur de votre salle en contenu vertical : espaces, équipements, ambiance et partenariat récurrent.',
-  },
-  '/hybrid': {
-    title: 'HYBRID — le programme de Kevin Nguena | KEVINGYM',
-    description:
-      "HYBRID, mon unique programme d'entraînement : esthétique physique et performance athlétique dans un seul système de 90 jours.",
-  },
-  '/contact': {
-    title: 'Contact professionnel — KEVINGYM',
-    description:
-      'Demandes marques, salles de sport, événements et presse. Contact professionnel de Kevin Nguena.',
+      'Official site of Kevin Nguena. Content creator, hybrid athlete, and founder of KEVINGYM. Brand collaborations, premium gym partnerships, and media kit.',
   },
 };
 
