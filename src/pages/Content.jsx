@@ -21,7 +21,19 @@ const Gallery = () => {
       align="center"
       className="border-t border-kg-border"
     >
-      <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+      {/* Columns follow the count. Three tiles on a three-column grid is a
+          triptych; two tiles on that same grid is a triptych with a hole in
+          it, which is exactly the unfinished look this page is getting rid
+          of. Kevin can drop one photo at a time without the grid breaking. */}
+      <div
+        className={`grid gap-5 sm:gap-6 ${
+          shown.length === 1
+            ? 'mx-auto max-w-sm'
+            : shown.length === 2
+              ? 'sm:grid-cols-2'
+              : 'sm:grid-cols-3'
+        }`}
+      >
         {shown.map((item, i) => (
           <Reveal key={item.id} delay={(i % 3) * 90} className="group">
             <Img src={item.image} alt={item.alt} ratio="aspect-[3/4]" />

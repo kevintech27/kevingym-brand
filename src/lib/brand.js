@@ -105,52 +105,42 @@ export const STORY = [
 //
 // TO FILL A TILE, one line each: drop the file at the path written in `file`
 // below, then set `image` to that same path. The tile appears. Tiles are
-// independent, so one photo is enough to bring the gallery back.
+// independent, so one photo is enough to bring the gallery back, and the grid
+// re-columns itself for one, two or three of them.
 //
 // Format for every tile: vertical 3:4, exported at 1080 x 1440 or larger,
 // JPEG, under 400 KB. 3:4 and not 9:16: the grid crops to 3:4, so a 9:16
 // export loses the top and bottom of the frame. Shoot wider than you need.
+//
+// Three tiles, not six. The weakest photo in a grid sets the perceived
+// standard, never the best one, so six slots only create pressure to fill two
+// of them with something mediocre. Three also reads as a chosen triptych
+// rather than a gallery with gaps in it.
+//
+// The three cover three different registers on purpose. A page of three
+// physique shots says Kevin sells his body; a page showing an effort frame, a
+// physique and a video still says he sells production. That is what a brand
+// is actually buying.
 export const WORK_ITEMS = [
   {
     id: 'w1',
-    title: 'Hybrid physique',
-    file: '/images/work/hybrid-physique.jpg',
-    alt: 'Kevin Nguena, physique shot in the gym',
+    title: 'Training, shot in Paris',
+    file: '/images/work/paris-training.jpg',
+    alt: 'Kevin Nguena training, shot by a photographer in Paris',
     image: null,
   },
   {
     id: 'w2',
-    title: 'Street workout',
-    file: '/images/work/street-workout.jpg',
-    alt: 'Kevin Nguena training on outdoor bars',
+    title: 'Physique',
+    file: '/images/work/physique.jpg',
+    alt: 'Kevin Nguena, full physique',
     image: null,
   },
   {
     id: 'w3',
-    title: 'Where it started',
-    file: '/images/work/where-it-started.jpg',
-    alt: 'Kevin Nguena in his early training days',
-    image: null,
-  },
-  {
-    id: 'w4',
-    title: 'Content shoot',
-    file: '/images/work/content-shoot.jpg',
-    alt: 'Kevin Nguena on a brand content shoot',
-    image: null,
-  },
-  {
-    id: 'w5',
-    title: 'Training session',
-    file: '/images/work/training-session.jpg',
-    alt: 'Kevin Nguena mid training session',
-    image: null,
-  },
-  {
-    id: 'w6',
-    title: 'Posing',
-    file: '/images/work/posing.jpg',
-    alt: 'Kevin Nguena posing on stage lighting',
+    title: 'Vertical video',
+    file: '/images/work/vertical-video.jpg',
+    alt: 'Frame from a vertical video filmed and edited by Kevin Nguena',
     image: null,
   },
 ];
@@ -308,6 +298,14 @@ export const PARTNER_PROOF = {
   ],
   source:
     "Measured over 68 consecutive days in ARNTREAL's own affiliate dashboard: 112 orders from 879 tracked referrals.",
+  // Offered, not displayed. A dashboard screenshot on a public page proves
+  // nothing, because anyone can edit one in a browser inspector in two
+  // minutes, and publishing a partner's interface exposes data that is not
+  // Kevin's to publish. The invitation is stronger than the image: it costs
+  // nothing to make when the export is real, and it moves verification to the
+  // moment it actually happens, which is the call, not the page.
+  verifyLabel: 'Request the export',
+  verifySubject: 'Partnership figures',
 };
 
 // Gyms with a confirmed relationship. Empty on purpose: the page renders an

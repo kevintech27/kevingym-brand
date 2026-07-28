@@ -68,6 +68,15 @@ export const PartnerProof = () => (
     <p className="mx-auto mt-8 max-w-measure text-center text-xs font-light leading-relaxed text-kg-dim">
       {PARTNER_PROOF.source}
     </p>
+
+    <div className="mt-5 text-center">
+      <a
+        href={mailto(PARTNER_PROOF.verifySubject)}
+        className="kg-link text-sm font-medium tracking-copy"
+      >
+        {PARTNER_PROOF.verifyLabel} &rsaquo;
+      </a>
+    </div>
   </Section>
 );
 
