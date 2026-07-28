@@ -1,5 +1,5 @@
 ﻿import { Link } from 'react-router-dom';
-import { HYBRID, PERSON } from '@/lib/brand';
+import { HERO, HYBRID, PERSON } from '@/lib/brand';
 import {
   Aura,
   Img,
@@ -30,12 +30,11 @@ const Hero = () => {
   const auraStyle = { transform: `translate3d(-50%, ${y * 0.22}px, 0)` };
   const portraitStyle = { transform: `translate3d(0, ${y * -0.05}px, 0)` };
 
-  // No hero portrait yet. The three real photographs in public/images are
-  // phone shots: they carry the story on /about, but none of them is a
-  // cinematic hero frame. A labelled empty slot is more honest than a selfie
-  // blown up to 400px on the first screen a brand manager sees.
-  // TODO KEVIN: shoot one, drop it at public/images/kevin-hero.jpg, then pass
-  // that path as src below.
+  // The portrait renders only once HERO.image points at a real file. Until
+  // then the hero is type only, which holds on its own: name, slogan, actions,
+  // full viewport height. An empty frame labelled "portrait to shoot" told
+  // every visitor the site was unfinished. See HERO in src/lib/brand.js for
+  // the path and the export format.
 
   return (
     <section id="top" className="relative overflow-hidden border-b border-kg-border">
@@ -94,20 +93,16 @@ const Hero = () => {
           </Reveal>
         </div>
 
-        <Reveal delay={360} className="mt-20 w-full sm:mt-24">
-          <div
-            style={portraitStyle}
-            className="group mx-auto w-[min(80vw,400px)] will-change-transform"
-          >
-            <Img
-              src={null}
-              alt="Kevin Nguena, cinematic hero portrait"
-              ratio="aspect-[3/4]"
-              eager
-              placeholder="PLACEHOLDER: hero portrait to shoot"
-            />
-          </div>
-        </Reveal>
+        {HERO.image && (
+          <Reveal delay={360} className="mt-20 w-full sm:mt-24">
+            <div
+              style={portraitStyle}
+              className="group mx-auto w-[min(80vw,400px)] will-change-transform"
+            >
+              <Img src={HERO.image} alt={HERO.alt} ratio="aspect-[3/4]" eager />
+            </div>
+          </Reveal>
+        )}
       </div>
     </section>
   );

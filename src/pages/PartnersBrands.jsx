@@ -9,7 +9,7 @@ import {
   mailto,
 } from '@/lib/brand';
 import { BrandMark, Card, Label, PageHead, Reveal, Section, Todo } from '@/components/Primitives';
-import { CardGrid, ContactCTA, ProofBar, Steps } from '@/components/Blocks';
+import { CardGrid, ContactCTA, PartnerProof, ProofBar, Steps } from '@/components/Blocks';
 
 const Services = () => (
   <Section
@@ -97,39 +97,33 @@ const Wall = () => {
   );
 };
 
-const MediaKit = () => (
-  <Section
-    label="Media kit"
-    title="Everything in one file."
-    align="center"
-    className="border-t border-kg-border"
-  >
-    <div className="flex flex-wrap justify-center gap-3">
-      {MEDIA_KIT_URL ? (
+/**
+ * Media kit. The whole section is absent while there is no file: a section
+ * titled "Everything in one file" with no file behind it damages the page it
+ * is meant to close. Setting MEDIA_KIT_URL in src/lib/brand.js brings it back
+ * with no other edit.
+ */
+const MediaKit = () => {
+  if (!MEDIA_KIT_URL) return null;
+
+  return (
+    <Section
+      label="Media kit"
+      title="Everything in one file."
+      align="center"
+      className="border-t border-kg-border"
+    >
+      <div className="flex flex-wrap justify-center gap-3">
         <a href={MEDIA_KIT_URL} className="kg-btn" download>
           Download the media kit
         </a>
-      ) : (
-        <span className="kg-btn-ghost cursor-not-allowed opacity-40" aria-disabled="true">
-          Media kit
-        </span>
-      )}
-      <a href={mailto('Campaign inquiry')} className="kg-btn-ghost">
-        Request it by email
-      </a>
-    </div>
-
-    {!MEDIA_KIT_URL && (
-      <div className="mx-auto mt-12 max-w-2xl text-left">
-        <Todo>
-          PLACEHOLDER: drop the PDF at <code>public/media-kit.pdf</code>, then set{' '}
-          <code>MEDIA_KIT_URL</code> in <code>src/lib/brand.js</code>. Until then the button stays
-          visibly disabled instead of pointing at nothing.
-        </Todo>
+        <a href={mailto('Campaign inquiry')} className="kg-btn-ghost">
+          Request it by email
+        </a>
       </div>
-    )}
-  </Section>
-);
+    </Section>
+  );
+};
 
 export default function PartnersBrands() {
   return (
@@ -150,6 +144,9 @@ export default function PartnersBrands() {
       <ProofBar />
       <Services />
       <Wall />
+      {/* Straight after the logo wall: the reader has just seen the name, so
+          the figures land on a brand they already have in mind. */}
+      <PartnerProof />
       <Section
         label="Process"
         title="How it works."

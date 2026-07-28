@@ -1,6 +1,6 @@
 ﻿import { Link } from 'react-router-dom';
 import { GYM_PARTNERS, GYM_SERVICES, PROCESS, mailto } from '@/lib/brand';
-import { BrandMark, Card, PageHead, Reveal, Section, Todo } from '@/components/Primitives';
+import { BrandMark, Card, PageHead, Reveal, Section } from '@/components/Primitives';
 import { CardGrid, ContactCTA, ProofBar, Steps } from '@/components/Blocks';
 
 const Services = () => (
@@ -37,13 +37,14 @@ const Wall = () => (
         ))}
       </div>
     ) : (
-      <div className="mx-auto max-w-2xl">
-        <Todo>
-          PLACEHOLDER: no gym partnership is confirmed yet, so nothing is listed here. Add signed
-          clubs to <code>GYM_PARTNERS</code> in <code>src/lib/brand.js</code> and this section turns
-          into a partner wall on its own.
-        </Todo>
-      </div>
+      // No club is listed until one is signed. The empty state is written for
+      // the reader, not for the developer: a gym owner landing here should see
+      // an opening, not a note about a data file. Adding a club to
+      // GYM_PARTNERS in src/lib/brand.js turns this back into a wall on its own.
+      <p className="mx-auto max-w-measure text-center text-lg font-light leading-relaxed tracking-copy text-kg-muted">
+        No club is listed here yet, and none will be until one is signed. If you run a facility and
+        want your name on this wall, one email is enough to start.
+      </p>
     )}
   </Section>
 );

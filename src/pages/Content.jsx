@@ -3,34 +3,52 @@ import { DELIVERABLES, ECOSYSTEM, SOCIALS, WORK_ITEMS } from '@/lib/brand';
 import { Card, Img, Label, PageHead, Reveal, Section } from '@/components/Primitives';
 import { ContactCTA, ProofBar } from '@/components/Blocks';
 
-const Gallery = () => (
+/**
+ * Gallery. Renders only the tiles that have a file behind them, and the whole
+ * section disappears when none do. The deliverable pills below survive either
+ * way, so /content still states what Kevin makes even with no photo on it.
+ * See WORK_ITEMS in src/lib/brand.js for the paths and the export format.
+ */
+const Gallery = () => {
+  const shown = WORK_ITEMS.filter((item) => item.image);
+  if (shown.length === 0) return null;
+
+  return (
+    <Section
+      label="Work"
+      title="What I make."
+      intro="Vertical-first content, shot and edited to be watched, not skimmed."
+      align="center"
+      className="border-t border-kg-border"
+    >
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        {shown.map((item, i) => (
+          <Reveal key={item.id} delay={(i % 3) * 90} className="group">
+            <Img src={item.image} alt={item.alt} ratio="aspect-[3/4]" />
+            <div className="mt-5 px-1">
+              <p className="font-display text-lg font-semibold tracking-headline text-kg-white">
+                {item.title}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+/**
+ * The deliverable pills, split out of the gallery so they keep showing while
+ * there is no photo yet.
+ */
+const Formats = () => (
   <Section
-    label="Work"
-    title="What I make."
-    intro="Vertical-first content, shot and edited to be watched, not skimmed."
+    label="Formats"
+    title="What I deliver."
     align="center"
     className="border-t border-kg-border"
   >
-    <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-      {WORK_ITEMS.map((item, i) => (
-        <Reveal key={item.id} delay={(i % 3) * 90} className="group">
-          <Img
-            src={item.image}
-            alt={`${item.title}, ${item.note}`}
-            ratio="aspect-[3/4]"
-            placeholder="Photo / video to add"
-          />
-          <div className="mt-5 px-1">
-            <p className="font-display text-lg font-semibold tracking-headline text-kg-white">
-              {item.title}
-            </p>
-            <p className="mt-1 text-sm font-light tracking-copy text-kg-dim">{item.note}</p>
-          </div>
-        </Reveal>
-      ))}
-    </div>
-
-    <div className="mt-16 flex flex-wrap justify-center gap-3">
+    <div className="flex flex-wrap justify-center gap-3">
       {DELIVERABLES.map((d) => (
         <span
           key={d}
@@ -99,6 +117,7 @@ export default function Content() {
 
       <ProofBar />
       <Gallery />
+      <Formats />
       <Channels />
       <ContactCTA
         title="Want this for your product?"

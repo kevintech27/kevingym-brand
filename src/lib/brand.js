@@ -98,16 +98,79 @@ export const STORY = [
 ];
 
 // Content
-// `image: null` on every item for now: labelled placeholders until real
-// cinematic content is shot, rather than reusing old casual selfies.
+// The /content gallery. While every `image` below is null the gallery does not
+// render at all: /content keeps its header, its audience bar and its channels.
+// An empty frame captioned "photo to add" is a placeholder shipped to
+// production, and this site does not ship those.
+//
+// TO FILL A TILE, one line each: drop the file at the path written in `file`
+// below, then set `image` to that same path. The tile appears. Tiles are
+// independent, so one photo is enough to bring the gallery back.
+//
+// Format for every tile: vertical 3:4, exported at 1080 x 1440 or larger,
+// JPEG, under 400 KB. 3:4 and not 9:16: the grid crops to 3:4, so a 9:16
+// export loses the top and bottom of the frame. Shoot wider than you need.
 export const WORK_ITEMS = [
-  { id: 'w1', title: 'Hybrid physique', note: 'To add', image: null },
-  { id: 'w2', title: 'Street workout', note: 'To add', image: null },
-  { id: 'w3', title: 'Where it started', note: 'To add', image: null },
-  { id: 'w4', title: 'Content shoot', note: 'To add', image: null },
-  { id: 'w5', title: 'Training session', note: 'To add', image: null },
-  { id: 'w6', title: 'Posing', note: 'To add', image: null },
+  {
+    id: 'w1',
+    title: 'Hybrid physique',
+    file: '/images/work/hybrid-physique.jpg',
+    alt: 'Kevin Nguena, physique shot in the gym',
+    image: null,
+  },
+  {
+    id: 'w2',
+    title: 'Street workout',
+    file: '/images/work/street-workout.jpg',
+    alt: 'Kevin Nguena training on outdoor bars',
+    image: null,
+  },
+  {
+    id: 'w3',
+    title: 'Where it started',
+    file: '/images/work/where-it-started.jpg',
+    alt: 'Kevin Nguena in his early training days',
+    image: null,
+  },
+  {
+    id: 'w4',
+    title: 'Content shoot',
+    file: '/images/work/content-shoot.jpg',
+    alt: 'Kevin Nguena on a brand content shoot',
+    image: null,
+  },
+  {
+    id: 'w5',
+    title: 'Training session',
+    file: '/images/work/training-session.jpg',
+    alt: 'Kevin Nguena mid training session',
+    image: null,
+  },
+  {
+    id: 'w6',
+    title: 'Posing',
+    file: '/images/work/posing.jpg',
+    alt: 'Kevin Nguena posing on stage lighting',
+    image: null,
+  },
 ];
+
+// Hero portrait on the home page.
+// Null until the frame exists, and while it is null the hero is type only:
+// eyebrow, name, slogan, actions. That version stands on its own, which is
+// exactly why an empty labelled frame is not worth shipping in its place.
+//
+// TO FILL IT: drop the file at public/images/kevin-hero.jpg, then set `image`
+// to '/images/kevin-hero.jpg'. Nothing else to change.
+//
+// Format: vertical 3:4, 1200 x 1600 or larger, JPEG under 500 KB. It renders
+// at up to 400px wide, so 1200px covers a 3x screen. It is the first thing a
+// brand manager sees: it has to be a shot frame, not a phone selfie enlarged.
+export const HERO = {
+  file: '/images/kevin-hero.jpg',
+  alt: 'Kevin Nguena, portrait',
+  image: null,
+};
 
 export const DELIVERABLES = ['Instagram Reels', 'TikTok', 'UGC', 'Shoots', 'Long-form'];
 
@@ -214,6 +277,39 @@ export const COLLABORATIONS = [
 ];
 export const COLLABORATION_SLOTS_OPEN = 0;
 
+// Partnership proof.
+// The one place on this site that shows what a partnership actually returned
+// to the brand, rather than what it reached. Audience figures say a campaign
+// was seen; these say it was bought.
+//
+// The figures are a closed period, not a live counter. They do not move on
+// their own and must never be presented as if they did. Re-export from the
+// brand's affiliate dashboard before changing any number here, and change the
+// window at the same time.
+//
+// Arithmetic is deliberately checkable from the block itself: 112 orders on
+// 879 tracked referrals is 12.7%, rounded down to 13%. A brand manager who
+// does that division and lands on the stated rate trusts the rest of the page.
+export const PARTNER_PROOF = {
+  brand: 'ARNTREAL',
+  window: '68 days',
+  model: 'Commission only',
+  title: 'What one partnership returned.',
+  intro:
+    'Commission only: no fixed fee and no media budget. Paid on what the audience actually bought.',
+  metrics: [
+    { id: 'revenue', label: 'Sales generated', value: '€16,817' },
+    { id: 'orders', label: 'Orders', value: '112' },
+    { id: 'conversion', label: 'Conversion rate', value: '13%' },
+    // "Referrals", not "Referrals tracked": the longer label wraps onto two
+    // lines at 390px and leaves the bottom row of the grid uneven. The word
+    // "tracked" is already carried by the source line under the card.
+    { id: 'referrals', label: 'Referrals', value: '879' },
+  ],
+  source:
+    "Measured over 68 consecutive days in ARNTREAL's own affiliate dashboard: 112 orders from 879 tracked referrals.",
+};
+
 // Gyms with a confirmed relationship. Empty on purpose: the page renders an
 // honest open state rather than inventing a partner.
 export const GYM_PARTNERS = [];
@@ -251,8 +347,15 @@ export const BUILDER = {
 
 // Contact
 export const CONTACT_EMAIL = 'partnerships@kevingym.com';
-// TODO KEVIN: drop the PDF at public/media-kit.pdf, then set this.
-export const MEDIA_KIT_URL = null; // e.g. '/media-kit.pdf'
+
+// Media kit. While this is null the site says nothing about a media kit at
+// all: no button, no section, no notice. A disabled button and a "coming
+// soon" both read as unfinished on a page whose job is to convince a brand.
+//
+// To publish it: drop the PDF at public/media-kit.pdf and set this to
+// '/media-kit.pdf'. The download button on /contact and the media kit
+// section on /partners/brands come back on their own. No other edit.
+export const MEDIA_KIT_URL = null;
 
 // Prefilled subjects. A static site has no backend, so the contact route is a
 // real mailto rather than a form that silently drops messages.

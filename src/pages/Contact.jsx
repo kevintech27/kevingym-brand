@@ -7,7 +7,7 @@
   SOCIALS,
   mailto,
 } from '@/lib/brand';
-import { Card, Label, PageHead, Reveal, Section, Todo } from '@/components/Primitives';
+import { Card, Label, PageHead, Reveal, Section } from '@/components/Primitives';
 
 // Contact.
 //
@@ -53,26 +53,14 @@ const Elsewhere = () => (
       <a href={ECOSYSTEM.app} className="kg-btn-ghost">
         Member area
       </a>
-      {MEDIA_KIT_URL ? (
+      {/* Nothing renders while there is no media kit. See MEDIA_KIT_URL in
+          src/lib/brand.js: setting it brings this button back on its own. */}
+      {MEDIA_KIT_URL && (
         <a href={MEDIA_KIT_URL} className="kg-btn-ghost" download>
           Media kit
         </a>
-      ) : (
-        <span className="kg-btn-ghost cursor-not-allowed opacity-40" aria-disabled="true">
-          Media kit
-        </span>
       )}
     </div>
-
-    {!MEDIA_KIT_URL && (
-      <div className="mx-auto mt-12 max-w-2xl text-left">
-        <Todo>
-          PLACEHOLDER: the media kit is not published yet. Drop the PDF at{' '}
-          <code>public/media-kit.pdf</code> and set <code>MEDIA_KIT_URL</code> in{' '}
-          <code>src/lib/brand.js</code>.
-        </Todo>
-      </div>
-    )}
   </Section>
 );
 

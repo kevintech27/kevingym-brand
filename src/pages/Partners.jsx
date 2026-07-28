@@ -1,7 +1,7 @@
 ﻿import { Link } from 'react-router-dom';
 import { PROCESS, mailto } from '@/lib/brand';
 import { PageHead, Section } from '@/components/Primitives';
-import { ContactCTA, ProofBar, SplitTiles, Steps } from '@/components/Blocks';
+import { ContactCTA, PartnerProof, ProofBar, SplitTiles, Steps } from '@/components/Blocks';
 
 const Routes = () => (
   <Section
@@ -78,6 +78,9 @@ export default function Partners() {
       </PageHead>
 
       <ProofBar />
+      {/* Audience first, then what that audience bought. In the other order
+          the reach figures read as the whole argument. */}
+      <PartnerProof />
       <Routes />
       <Events />
       <Process />
