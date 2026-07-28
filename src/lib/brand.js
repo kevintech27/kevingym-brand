@@ -28,13 +28,27 @@ export const ROUTES = [
 
 // Proof bar
 // Single source of truth for the numbers shown under the hero.
-// Checked against the public TikTok/Instagram profiles on 2026-07-27:
-// TikTok 124.1K followers, 6.7M cumulative likes, pinned top video 8.9M views,
-// Instagram 34K followers. Re-check every few weeks and round DOWN so the
-// site never overstates.
+//
+// Cumulative figures only, on purpose. A follower count and a lifetime like
+// count never fall, so this bar cannot turn into a lie between two updates.
+// Rolling figures (30-day views, engagement rate) belong in the media kit,
+// which is dated and sent per campaign: on a page that stays up for months,
+// a rolling number that drops after a quiet month argues against Kevin.
+//
+// Always round DOWN. A figure a brand checks and finds slightly better than
+// stated costs nothing. The reverse costs the deal.
+//
+// STATS_UPDATED is what makes the whole bar defensible. An undated figure
+// that is two months old reads as a lie when verified; the same figure with a
+// date next to it reads as rigour, and buys the right to update this every
+// two or three months rather than every week.
+export const STATS_UPDATED = 'July 2026';
+
+// Confirmed by Kevin on 2026-07-29: TikTok 125K, Instagram 35K.
+// Top post views and lifetime likes checked on the public profiles 2026-07-27.
 export const STATS = [
-  { id: 'tiktok', label: 'TikTok', value: '124K' },
-  { id: 'instagram', label: 'Instagram', value: '34K' },
+  { id: 'tiktok', label: 'TikTok', value: '125K' },
+  { id: 'instagram', label: 'Instagram', value: '35K' },
   // Keep the unit in the label, not the value: the value slot is set at
   // display size and "8.9M Views" wraps onto two lines there.
   { id: 'top_post', label: 'Top post views', value: '8.9M' },

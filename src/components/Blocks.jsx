@@ -1,19 +1,40 @@
 ﻿import { Link } from 'react-router-dom';
-import { CONTACT_EMAIL, ECOSYSTEM, HYBRID, PARTNER_PROOF, STATS, mailto } from '@/lib/brand';
+import {
+  CONTACT_EMAIL,
+  ECOSYSTEM,
+  HYBRID,
+  PARTNER_PROOF,
+  STATS,
+  STATS_UPDATED,
+  mailto,
+} from '@/lib/brand';
 import { Card, Label, Reveal, Section, Stat } from '@/components/Primitives';
 
 // Blocks: the compositions that appear on more than one route. Keeping them
 // here is what stops the eight pages from drifting apart visually.
 
-/** The audience figures. Read straight from STATS in src/lib/brand.js. */
+/**
+ * The audience figures. Read straight from STATS in src/lib/brand.js.
+ *
+ * The date line is not a disclaimer, it is part of the claim. Undated figures
+ * on a page that stays up for months are the easiest thing on the site to
+ * catch out; dated ones survive being checked, and stop being anyone's
+ * argument that the rest of the page is soft too.
+ */
 export const ProofBar = ({ bordered = true }) => (
   <section className={bordered ? 'border-b border-kg-border' : ''}>
-    <div className="kg-wrap grid grid-cols-2 gap-y-12 py-16 sm:gap-y-14 lg:grid-cols-5 lg:gap-y-0 lg:divide-x lg:divide-kg-border lg:py-20">
-      {STATS.map((s, i) => (
-        <Reveal key={s.id} delay={i * 70} className="lg:px-6">
-          <Stat label={s.label} value={s.value} />
-        </Reveal>
-      ))}
+    <div className="kg-wrap pb-12 pt-16 sm:pt-20">
+      <div className="grid grid-cols-2 gap-y-12 sm:gap-y-14 lg:grid-cols-5 lg:gap-y-0 lg:divide-x lg:divide-kg-border">
+        {STATS.map((s, i) => (
+          <Reveal key={s.id} delay={i * 70} className="lg:px-6">
+            <Stat label={s.label} value={s.value} />
+          </Reveal>
+        ))}
+      </div>
+
+      <p className="mt-12 text-center text-[11px] font-light tracking-copy text-kg-dim">
+        Figures updated {STATS_UPDATED}. Rounded down.
+      </p>
     </div>
   </section>
 );
