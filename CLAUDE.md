@@ -86,6 +86,46 @@ Toute nouvelle route doit être ajoutée aux trois endroits : `App.jsx`,
 `RouteMeta.jsx` et `public/sitemap.xml`. Sans entrée dans `RouteMeta`, la page
 part en `noindex` et perd son canonical.
 
+`META` dans `RouteMeta.jsx` est aussi la liste que lit le pré-rendu : une route
+absente de `META` ne reçoit pas de fichier HTML et retombe sur le shell
+`noindex`.
+
+## Pré-rendu
+
+Le site est une SPA, mais il ne se déploie pas comme telle. `npm run build`
+enchaîne trois étapes : build client, build SSR de `src/entry-server.jsx`, puis
+`scripts/prerender.js` qui écrit un vrai fichier HTML par route
+(`dist/about/index.html`, etc.).
+
+C'est ce qui fait qu'un robot obtient le bon titre, la bonne description et le
+bon canonical sans exécuter de JavaScript. Avant ça, les huit URL servaient
+toutes le `<head>` de l'accueil, canonical vers `/` inclus : Google finissait
+par corriger, mais Bing, LinkedIn, WhatsApp, Slack et X affichaient l'accueil
+en aperçu de n'importe quel lien profond.
+
+Deux conséquences à ne pas casser :
+
+- `index.html` est le gabarit du pré-rendu. `scripts/prerender.js` retrouve
+  chaque balise par sa forme et **fait échouer le build** s'il n'en trouve pas
+  une. Modifier une balise du `<head>` implique de mettre à jour son motif dans
+  le script. L'échec est voulu : un remplacement raté en silence remettrait
+  huit pages qui se déclarent toutes être l'accueil.
+- `RouteMeta` reste indispensable. Il gère le `<head>` pendant la navigation
+  côté client, où aucun document n'est redemandé.
+
+Le rewrite Vercel pointe vers `spa-fallback.html`, un shell en `noindex` sans
+canonical. Sans lui, chaque adresse mal tapée serait servie en 200 comme une
+copie indexable de l'accueil.
+
+## Vérifier le rendu d'un build
+
+**`npm run preview:vite` ne résout pas les index de dossier** et renvoie
+`dist/index.html` pour toutes les URL. Il donne donc l'illusion que le
+pré-rendu est cassé, et il produit de faux mismatches d'hydratation.
+
+`npm run preview` sert `dist/` comme Vercel le fait, avec résolution des
+index de dossier. C'est celui à utiliser pour contrôler un build.
+
 ## Domaine et déploiement
 
 `kevingym.com` est le domaine de production de ce projet Vercel

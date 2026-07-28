@@ -9,8 +9,14 @@
 
     <!-- Canonical domain of the PERSONAL BRAND: kevingym.com (apex).
          The HYBRID programme lives on kevingymworkout.com: never
-         canonicalize one toward the other. RouteMeta rewrites the canonical,
-         the title, the description and the Open Graph tags per route. -->
+         canonicalize one toward the other.
+
+         The tags below are the home page's, and they are also the template
+         that scripts/prerender.js rewrites per route at build time. That
+         script matches them by shape and fails the build if it cannot find
+         one, so changing a tag here means changing its pattern there.
+         RouteMeta rewrites the same tags again in the browser, which is what
+         keeps the head correct during client-side navigation. -->
     <link rel="canonical" href="https://kevingym.com/" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
 
@@ -65,11 +71,17 @@
               "https://www.instagram.com/kevingym27/",
               "https://www.tiktok.com/@kevingym27"
             ],
-            "worksFor": {
-              "@type": "Organization",
-              "name": "KEVINGYM",
-              "url": "https://kevingymworkout.com/"
-            }
+            "worksFor": { "@id": "https://kevingym.com/#organization" }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://kevingym.com/#organization",
+            "name": "KEVINGYM",
+            "url": "https://kevingym.com/",
+            "logo": "https://kevingym.com/og.png",
+            "email": "partnerships@kevingym.com",
+            "founder": { "@id": "https://kevingym.com/#person" },
+            "sameAs": ["https://kevingymworkout.com/"]
           }
         ]
       }

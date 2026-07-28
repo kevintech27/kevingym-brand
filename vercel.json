@@ -21,7 +21,7 @@
     { "source": "/confidentialite", "destination": "https://kevingymworkout.com/confidentialite", "permanent": true }
   ],
 
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/spa-fallback.html" }],
 
   "headers": [
     {
