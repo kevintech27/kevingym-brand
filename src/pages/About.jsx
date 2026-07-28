@@ -11,28 +11,42 @@ import { ContactCTA, ProofBar } from '@/components/Blocks';
 const Story = () => (
   <Section label="The story" title="How it started." className="border-t border-kg-border">
     <div className="space-y-20 sm:space-y-28">
-      {STORY.map((chapter, i) => (
-        <Reveal key={chapter.id}>
-          <article
-            className={`group grid items-center gap-8 sm:gap-12 lg:grid-cols-2 ${
-              i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
-            }`}
-          >
-            <Img
-              src={chapter.image}
-              alt={chapter.alt}
-              ratio="aspect-[4/5]"
-              placeholder="Photo to add"
-            />
-            <div>
-              <Label>{chapter.year}</Label>
-              <p className="mt-6 text-lg font-light leading-relaxed tracking-copy text-kg-muted sm:text-xl">
-                {chapter.body}
-              </p>
-            </div>
-          </article>
-        </Reveal>
-      ))}
+      {STORY.map((chapter, i) => {
+        // A chapter without a photograph is a text block, never an empty
+        // frame. Centring it also makes the missing image read as a change of
+        // rhythm closing the story rather than as something that failed to
+        // load. See STORY in src/lib/brand.js.
+        if (!chapter.image) {
+          return (
+            <Reveal key={chapter.id}>
+              <article className="mx-auto max-w-3xl text-center">
+                <Label>{chapter.year}</Label>
+                <p className="mt-6 text-lg font-light leading-relaxed tracking-copy text-kg-muted sm:text-xl">
+                  {chapter.body}
+                </p>
+              </article>
+            </Reveal>
+          );
+        }
+
+        return (
+          <Reveal key={chapter.id}>
+            <article
+              className={`group grid items-center gap-8 sm:gap-12 lg:grid-cols-2 ${
+                i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
+              }`}
+            >
+              <Img src={chapter.image} alt={chapter.alt} ratio="aspect-[4/5]" />
+              <div>
+                <Label>{chapter.year}</Label>
+                <p className="mt-6 text-lg font-light leading-relaxed tracking-copy text-kg-muted sm:text-xl">
+                  {chapter.body}
+                </p>
+              </div>
+            </article>
+          </Reveal>
+        );
+      })}
     </div>
   </Section>
 );

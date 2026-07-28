@@ -70,9 +70,12 @@ export const SOCIALS = [
   },
 ];
 
-// Story. Only the three photographs that actually exist in public/images are
-// used here. Each caption describes what the photo is, not a story invented
+// Story. Each caption describes what the photo is, not a story invented
 // around it.
+//
+// A chapter with `image: null` renders as a full-width text block, not as an
+// empty frame. That is what lets a weak photograph be pulled without losing
+// the paragraph it carried, and without shipping a placeholder in its place.
 export const STORY = [
   {
     id: 'start',
@@ -90,8 +93,13 @@ export const STORY = [
   },
   {
     id: 'today',
+    // Pulled: the shot was not good enough to close the story on. The
+    // paragraph is the payoff of the page, so it stays and runs full width.
+    // A replacement drops in at public/images/kevin-today.jpg and this line
+    // goes back to that path. This is the strongest slot on /about, so it
+    // deserves a shot frame rather than the first spare photo available.
     year: 'Today',
-    image: '/images/kevin-today.jpg',
+    image: null,
     alt: 'Kevin Nguena today',
     body: 'Same standard, more structure. Hybrid training, filmed and published, plus the platform behind it that I build and run myself.',
   },
