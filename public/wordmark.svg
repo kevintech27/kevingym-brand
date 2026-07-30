@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 693 100" width="693" height="100" role="img" aria-label="KEVINGYM">
+  <title>KEVINGYM</title>
+  <!-- Logotype dessine, pas une police mise en lettrage. Genere par
+       scripts/wordmark.js : toute retouche passe par ce script, pas par les
+       coordonnees ci-dessous.
+
+       Grille : capitale 100, fut 21, approche 20, chanfrein 10 a 45 degres
+       sur le coin haut gauche et bas droite de chaque lettre. Bras du K a 38
+       degres, comme le monogramme de l'icone.
+
+       Blanc en dur, parce que le fichier est servi en image sur fond noir.
+       Passer a currentColor le jour ou le trace est inline dans un composant. -->
+  <g fill="#FFFFFF">
+    <path d="M10,0 21,0 21,100 0,100 0,10Z M5.08,49.11 67.94,0 80.87,16.55 18.01,65.66Z M18.01,34.34 80.87,83.45 67.94,100 5.08,50.89Z"/>
+    <path d="M109,0 120,0 120,100 99,100 99,10Z M120,0 169,0 169,21 120,21Z M120,39.5 157,39.5 157,60.5 120,60.5Z M120,79 169,79 169,90 159,100 120,100Z"/>
+    <path d="M194,0 206,0 234,100 212,100 186.19,7.81Z M240,0 262,0 234,100 212,100Z"/>
+    <path d="M285,0 296,0 296,90 286,100 275,100 275,10Z"/>
+    <path d="M326,0 337,0 337,100 316,100 316,10Z M326,0 340,0 391.45,93.55 385,100 371,100 319.55,6.45Z M374,0 395,0 395,90 385,100 374,100Z"/>
+    <path d="M425,0 436,0 436,100 415,100 415,10Z M436,0 491,0 491,21 436,21Z M436,79 491,79 491,90 481,100 436,100Z M455,58 491,58 491,79 455,79Z"/>
+    <path d="M516,0 528,0 556,55 534,55 509.37,6.63Z M562,0 584,0 556,55 534,55Z M534,55 556,55 556,90 546,100 534,100Z"/>
+    <path d="M608,0 619,0 619,100 598,100 598,10Z M608,0 619,0 656,100 635,100 600.7,7.3Z M672,0 693,0 656,100 635,100Z M672,0 693,0 693,90 683,100 672,100Z"/>
+  </g>
+</svg>

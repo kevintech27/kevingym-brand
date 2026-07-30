@@ -73,6 +73,22 @@ ailleurs.** Cette règle n'est pas une préférence, c'est ce qui donne son impa
 Geist pour le texte et le display, Geist Mono pour la zone accent uniquement.
 Chargées depuis Google Fonts dans `index.html`.
 
+## Marques
+
+Deux marques dessinées, un seul langage : capitale 100, fût 21, chanfrein de
+10 à 45 degrés, diagonales à 38 degrés coupées d'équerre sur leur propre axe.
+
+- `public/favicon.svg` : le monogramme K, plus ses deux rasters
+  (`logo.png` pour le champ `logo` de schema.org, `apple-touch-icon.png` pour
+  l'écran d'accueil iOS).
+- `public/wordmark.svg` : le logotype KEVINGYM, huit lettres dessinées.
+  Généré par `scripts/wordmark.js`, qui ne tourne pas pendant le build. Les
+  coordonnées du SVG ne se retouchent pas à la main : on change une constante
+  du script et on le relance.
+
+Le V reste le logo du produit sur kevingymworkout.com. Les deux domaines ne
+servent jamais la même marque dans le même résultat de recherche.
+
 ## Routes
 
 Huit routes, définies dans `src/App.jsx` et décrites dans
