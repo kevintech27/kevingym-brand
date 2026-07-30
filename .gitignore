@@ -2,6 +2,10 @@ node_modules
 dist
 dist-ssr
 .vercel
+
+# Salle d'attente des photos candidates. Rien ici n'est publie: les images
+# retenues sont copiees dans public/images sous leur nom definitif.
+_candidates
 .env
 .env.local
 .DS_Store
