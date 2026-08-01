@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Le .ico d'abord, le SVG ensuite : les navigateurs modernes prennent le
+         SVG, et tout ce qui ne sait lire qu'un .ico (Google dans les resultats
+         de recherche, l'epinglage Windows, les vieux agregateurs) trouve un
+         vrai fichier. Sans lui, /favicon.ico tombait dans le rewrite Vercel et
+         renvoyait spa-fallback.html en 200 : du HTML servi comme une image,
+         donc l'icone generique partout. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
