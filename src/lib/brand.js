@@ -42,13 +42,18 @@ export const ROUTES = [
 // that is two months old reads as a lie when verified; the same figure with a
 // date next to it reads as rigour, and buys the right to update this every
 // two or three months rather than every week.
-export const STATS_UPDATED = 'July 2026';
+export const STATS_UPDATED = 'August 2026';
 
-// Confirmed by Kevin on 2026-07-29: TikTok 125K, Instagram 35K.
-// Top post views and lifetime likes checked on the public profiles 2026-07-27.
+// Confirmed by Kevin on 2026-08-15: TikTok 135K, Instagram 41.9K.
+// Instagram is stated at 41K, not 41.9K, per the round-down rule above: a
+// follower count moves daily and 41K stays true through a quiet week.
+//
+// Top post views and lifetime likes were last checked on the public profiles
+// 2026-07-27 and are not re-confirmed here. Both are cumulative, so an old
+// reading can only understate them, which is the safe direction.
 export const STATS = [
-  { id: 'tiktok', label: 'TikTok', value: '125K' },
-  { id: 'instagram', label: 'Instagram', value: '35K' },
+  { id: 'tiktok', label: 'TikTok', value: '135K' },
+  { id: 'instagram', label: 'Instagram', value: '41K' },
   // Keep the unit in the label, not the value: the value slot is set at
   // display size and "8.9M Views" wraps onto two lines there.
   { id: 'top_post', label: 'Top post views', value: '8.9M' },
@@ -59,7 +64,7 @@ export const STATS = [
 export const PERSON = {
   name: 'Kevin Nguena',
   handle: 'KEVINGYM',
-  roles: ['Content Creator', 'Hybrid Athlete', 'Founder'],
+  roles: ['Content Creator', 'Athlete', 'Founder'],
   slogan: 'BUILT BY COURAGE',
   manifesto: [
     "I train because it's the one thing that never lies to me about the work I put in.",
@@ -102,33 +107,26 @@ export const STORY = [
     id: 'street',
     year: 'Street work',
     image: '/images/kevin-street.jpg',
-    alt: 'Kevin Nguena training outdoors',
+    alt: 'Kevin Nguena at an outdoor calisthenics park, pull-up bars behind him',
     body: 'Bars, bodyweight, whatever was available. Training outside taught me the part of the work that has nothing to do with equipment.',
   },
   {
     id: 'today',
-    // Pulled: the shot was not good enough to close the story on. The
-    // paragraph is the payoff of the page, so it stays and runs full width.
-    // A replacement drops in at public/images/kevin-today.jpg and this line
-    // goes back to that path. This is the strongest slot on /about, so it
-    // deserves a shot frame rather than the first spare photo available.
+    // The strongest slot on /about: it closes the story, so it carries a shot
+    // frame rather than the first spare photo available. Peter Simmons,
+    // June 2026.
     year: 'Today',
-    image: null,
-    alt: 'Kevin Nguena today',
+    image: '/images/kevin-today.jpg',
+    alt: 'Kevin Nguena leaning on a rail under a steel bridge',
     body: 'Same standard, more structure. Hybrid training, filmed and published, plus the platform behind it that I build and run myself.',
   },
 ];
 
 // Content
-// The /content gallery. While every `image` below is null the gallery does not
-// render at all: /content keeps its header, its audience bar and its channels.
-// An empty frame captioned "photo to add" is a placeholder shipped to
-// production, and this site does not ship those.
-//
-// TO FILL A TILE, one line each: drop the file at the path written in `file`
-// below, then set `image` to that same path. The tile appears. Tiles are
-// independent, so one photo is enough to bring the gallery back, and the grid
-// re-columns itself for one, two or three of them.
+// The /content gallery. A tile renders only when its `image` is set, and the
+// whole gallery disappears when none are: an empty frame captioned "photo to
+// add" is a placeholder shipped to production, and this site does not ship
+// those. To swap a tile, replace the file at `file` and keep the path.
 //
 // Format for every tile: vertical 3:4, exported at 1080 x 1440 or larger,
 // JPEG, under 400 KB. 3:4 and not 9:16: the grid crops to 3:4, so a 9:16
@@ -142,38 +140,35 @@ export const STORY = [
 // The three cover three different registers on purpose. A page of three
 // physique shots says Kevin sells his body; a page showing an effort frame, a
 // physique and a video still says he sells production. That is what a brand
-// is actually buying.
+// is actually buying. Keep that split when swapping a tile.
 export const WORK_ITEMS = [
   {
     id: 'w1',
     title: 'Training, shot in Paris',
     file: '/images/work/paris-training.jpg',
-    alt: 'Kevin Nguena training, shot by a photographer in Paris',
-    image: null,
+    alt: 'Kevin Nguena in a sprint start in front of a stone facade',
+    image: '/images/work/paris-training.jpg',
   },
   {
     id: 'w2',
     title: 'Physique',
     file: '/images/work/physique.jpg',
-    alt: 'Kevin Nguena, full physique',
-    image: null,
+    alt: 'Kevin Nguena, full physique, hand held out to the camera',
+    image: '/images/work/physique.jpg',
   },
   {
     id: 'w3',
     title: 'Vertical video',
     file: '/images/work/vertical-video.jpg',
-    alt: 'Frame from a vertical video filmed and edited by Kevin Nguena',
-    image: null,
+    alt: 'Frame from a vertical video filmed and edited by Kevin Nguena, sprinting on an outdoor track',
+    image: '/images/work/vertical-video.jpg',
   },
 ];
 
 // Hero portrait on the home page.
-// Null until the frame exists, and while it is null the hero is type only:
-// eyebrow, name, slogan, actions. That version stands on its own, which is
-// exactly why an empty labelled frame is not worth shipping in its place.
-//
-// TO FILL IT: drop the file at public/images/kevin-hero.jpg, then set `image`
-// to '/images/kevin-hero.jpg'. Nothing else to change.
+// Set to null and the hero falls back to type only: eyebrow, name, slogan,
+// actions. That version stands on its own, which is exactly why an empty
+// labelled frame is never worth shipping in its place.
 //
 // Format: vertical 3:4, 1200 x 1600 or larger, JPEG under 500 KB. It renders
 // at up to 400px wide, so 1200px covers a 3x screen. It is the first thing a
@@ -181,7 +176,7 @@ export const WORK_ITEMS = [
 export const HERO = {
   file: '/images/kevin-hero.jpg',
   alt: 'Kevin Nguena, portrait',
-  image: null,
+  image: '/images/kevin-hero.jpg',
 };
 
 export const DELIVERABLES = ['Instagram Reels', 'TikTok', 'UGC', 'Shoots', 'Long-form'];

@@ -16,9 +16,9 @@ export const OG_IMAGE = `${SITE_URL}/og.png`;
 
 export const META = {
   '/': {
-    title: 'Kevin Nguena | KEVINGYM, Content Creator, Hybrid Athlete, Founder',
+    title: 'Kevin Nguena | KEVINGYM, Content Creator, Athlete, Founder',
     description:
-      'Official site of Kevin Nguena. Content creator, hybrid athlete, and founder of KEVINGYM. Brand collaborations, gym partnerships, and the HYBRID training system.',
+      'Official site of Kevin Nguena. Content creator, athlete, and founder of KEVINGYM. Brand collaborations, gym partnerships, and the HYBRID training system.',
   },
   '/about': {
     title: 'About Kevin Nguena | KEVINGYM',
