@@ -6,6 +6,11 @@ dist-ssr
 # Salle d'attente des photos candidates. Rien ici n'est publie: les images
 # retenues sont copiees dans public/images sous leur nom definitif.
 _candidates
+
+# Sortie de scripts/media-kit.js. La source est brand-assets/media-kit.html,
+# elle seule est suivie: le PDF pese plus d'un megaoctet et se regenere en une
+# commande, le versionner ne ferait qu'alourdir l'historique a chaque retouche.
+brand-assets/media-kit.pdf
 .env
 .env.local
 .DS_Store

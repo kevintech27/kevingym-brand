@@ -1,0 +1,386 @@
+<!-- Source du media kit KEVINGYM. Genere en PDF par scripts/media-kit.js.
+     Format A4, pensé pour l'ecran d'abord : un brand manager l'ouvre dans un
+     onglet, il ne l'imprime presque jamais.
+
+     Les chiffres de ce document doivent rester identiques a src/lib/brand.js.
+     Deux versions differentes du meme chiffre, l'une sur le site et l'autre
+     dans le PDF, est la seule erreur de ce document qui coute un deal.
+
+     Tout ce qui est marque PLACEHOLDER attend une donnee que Kevin seul peut
+     sortir de ses analytics. Un media kit avec un trou visible se corrige ;
+     un media kit avec un chiffre plausible invente ne se rattrape pas. -->
+<meta charset="utf-8" />
+<title>KEVINGYM Media Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #000000;
+    --text: #ffffff;
+    --muted: #a1a1aa;
+    --dim: #52525b;
+    --border: rgba(255, 255, 255, 0.1);
+    --surface: rgba(255, 255, 255, 0.035);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* A4 a 96dpi. La hauteur est fixee et non minimale : une page qui deborde
+     d'un pixel se coupe en deux pages dans le PDF, et le defaut ne se voit
+     qu'apres generation. */
+  .page {
+    width: 794px;
+    height: 1123px;
+    padding: 64px 68px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  .label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  h1, h2 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+  h2 { font-size: 42px; margin-top: 18px; }
+
+  p { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+  .rule { height: 1px; background: var(--border); }
+
+  /* Couverture */
+  .cover { justify-content: space-between; }
+  .cover .wordmark { width: 232px; }
+  .cover h1 { font-size: 78px; }
+  .cover .slogan {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .cover-photo {
+    position: absolute;
+    inset: 0 0 0 46%;
+    background: url('http://localhost:3100/images/kevin-hero.jpg') center 22% / cover no-repeat;
+  }
+  /* Le degrade ramene la photo dans la page au lieu de l'y coller, et garde
+     la colonne de texte lisible par-dessus. */
+  .cover-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.86) 26%, rgba(0,0,0,0.12) 78%, rgba(0,0,0,0.42) 100%);
+  }
+  /* Le :not() n'est pas cosmetique. Sans lui cette regle a la meme
+     specificite que .cover-photo, passe apres elle, et repasse le bloc photo
+     en position relative : il perd sa taille et la couverture sort toute
+     noire, sans erreur nulle part. */
+  .cover > *:not(.cover-photo) { position: relative; z-index: 1; }
+
+  /* Chiffres */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 34px; }
+  .stat { background: var(--bg); padding: 26px 24px; }
+  .stat .v { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .stat .v.text { font-size: 20px; }
+  .stat .k { margin-top: 8px; }
+
+  .note { font-size: 11px; color: var(--dim); line-height: 1.6; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 30px; }
+  .metrics > div { padding: 0 18px; text-align: center; }
+  .metrics > div + div { border-left: 1px solid var(--border); }
+  .metrics .v { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .metrics .k { margin-top: 9px; }
+
+  /* Blocs a completer */
+  .todo {
+    border: 1px dashed rgba(255, 255, 255, 0.22);
+    border-radius: 12px;
+    padding: 20px 22px;
+    background: var(--surface);
+  }
+  .todo .k { color: var(--muted); font-size: 12px; font-weight: 500; }
+  .todo .ph {
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #fff;
+  }
+  .todo .src { margin-top: 8px; font-size: 10.5px; color: var(--dim); line-height: 1.55; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .card { border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; background: var(--surface); }
+  .card h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .card p { font-size: 12.5px; margin-top: 7px; line-height: 1.6; }
+
+  .shot { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); display: block; }
+  .shot-cap { margin-top: 9px; font-size: 11.5px; font-weight: 500; color: var(--text); }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; font-size: 12px; color: var(--muted); }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .step .n { font-size: 11px; color: var(--dim); letter-spacing: 0.1em; }
+  .step h3 { font-size: 13.5px; font-weight: 600; margin-top: 8px; }
+  .step p { font-size: 11.5px; margin-top: 6px; line-height: 1.55; }
+
+  .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; }
+  .foot .label { color: #3f3f46; }
+
+  .spacer { flex: 1; }
+</style>
+
+<!-- 1. Couverture -->
+<section class="page cover">
+  <div class="cover-photo"></div>
+
+  <div>
+    <img class="wordmark" src="http://localhost:3100/wordmark.svg" alt="KEVINGYM" />
+    <div class="label" style="margin-top: 22px;">Media Kit &nbsp;/&nbsp; August 2026</div>
+  </div>
+
+  <div>
+    <h1>Kevin<br />Nguena</h1>
+    <div style="display: flex; align-items: center; gap: 18px; margin-top: 26px;">
+      <span class="rule" style="width: 54px;"></span>
+      <span class="slogan">Built by courage</span>
+    </div>
+    <p style="margin-top: 26px; max-width: 300px;">
+      Content Creator, Athlete, Founder. Based in France, working with brands
+      and gyms in France and internationally.
+    </p>
+  </div>
+
+  <div>
+    <div class="rule"></div>
+    <div style="display: flex; justify-content: space-between; margin-top: 16px;">
+      <span class="label">partnerships@kevingym.com</span>
+      <span class="label">kevingym.com</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Audience -->
+<section class="page">
+  <div class="label">Audience</div>
+  <h2>The numbers.</h2>
+  <p style="margin-top: 16px; max-width: 460px;">
+    Cumulative figures only. A follower count and a lifetime like count never fall,
+    so nothing on this page can turn into a lie between two updates. Always rounded down.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="v">135K</div><div class="label k">TikTok &nbsp;@kevingym27</div></div>
+    <div class="stat"><div class="v">41K</div><div class="label k">Instagram &nbsp;@kevingym27</div></div>
+    <div class="stat"><div class="v">8.9M</div><div class="label k">Top post views</div></div>
+    <div class="stat"><div class="v">6.7M</div><div class="label k">TikTok lifetime likes</div></div>
+  </div>
+
+  <p class="note" style="margin-top: 14px;">
+    Figures updated August 2026. Follower counts confirmed 15 August 2026, top post and
+    lifetime likes checked on the public profiles 27 July 2026.
+  </p>
+
+  <div class="label" style="margin-top: 40px;">To complete before sending</div>
+  <p style="margin-top: 10px; max-width: 470px; font-size: 12.5px;">
+    Rolling figures belong in this document rather than on the site: a media kit is
+    dated and sent per campaign, so a number that moves is safe here.
+  </p>
+
+  <div class="grid2" style="margin-top: 16px;">
+    <div class="todo">
+      <div class="k">Views, last 30 days</div>
+      <div class="ph">PLACEHOLDER</div>
+      <div class="src">TikTok Studio &gt; Analytics &gt; Overview, 30-day window. Add Instagram Insights &gt; Views.</div>
+    </div>
+    <div class="todo">
+      <div class="k">Average views per post</div>
+      <div class="ph">PLACEHOLDER</div>
+      <div class="src">Same panel. Give the median rather than the mean: one viral post distorts the average.</div>
+    </div>
+    <div class="todo">
+      <div class="k">Age and gender split</div>
+      <div class="ph">PLACEHOLDER</div>
+      <div class="src">TikTok Studio &gt; Analytics &gt; Followers. This is the single figure agencies ask for first.</div>
+    </div>
+    <div class="todo">
+      <div class="k">Top countries</div>
+      <div class="ph">PLACEHOLDER</div>
+      <div class="src">Same panel. Three countries with their percentage is enough.</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="label">KEVINGYM Media Kit</span>
+    <span class="label">02</span>
+  </div>
+</section>
+
+<!-- 3. Le travail -->
+<section class="page">
+  <div class="label">Work</div>
+  <h2>What I make.</h2>
+  <p style="margin-top: 16px; max-width: 460px;">
+    Vertical-first content, shot and edited end to end. Filmed and cut by me, built
+    for the platform it ships on.
+  </p>
+
+  <div class="grid3" style="margin-top: 30px;">
+    <div>
+      <img class="shot" src="http://localhost:3100/images/work/paris-training.jpg" alt="Training, shot in Paris" />
+      <div class="shot-cap">Training, shot in Paris</div>
+    </div>
+    <div>
+      <img class="shot" src="http://localhost:3100/images/work/physique.jpg" alt="Physique" />
+      <div class="shot-cap">Physique</div>
+    </div>
+    <div>
+      <img class="shot" src="http://localhost:3100/images/work/vertical-video.jpg" alt="Vertical video" />
+      <div class="shot-cap">Vertical video</div>
+    </div>
+  </div>
+
+  <div class="label" style="margin-top: 40px;">Formats delivered</div>
+  <div class="pills" style="margin-top: 14px;">
+    <span class="pill">Instagram Reels</span>
+    <span class="pill">TikTok</span>
+    <span class="pill">UGC</span>
+    <span class="pill">Shoots</span>
+    <span class="pill">Long-form</span>
+  </div>
+
+  <div class="label" style="margin-top: 36px;">What you can book</div>
+  <div class="grid2" style="margin-top: 14px;">
+    <div class="card">
+      <h3>Campaign content</h3>
+      <p>Vertical-first video built around your product, shot and edited end to end. Delivered ready to post on my channels, yours, or both.</p>
+    </div>
+    <div class="card">
+      <h3>UGC and paid usage</h3>
+      <p>Content produced for you to run as paid media, with usage rights agreed in writing before the shoot.</p>
+    </div>
+    <div class="card">
+      <h3>Long-term ambassador</h3>
+      <p>A season-long relationship rather than a one-off post. Consistent presence is what actually moves a fitness brand.</p>
+    </div>
+    <div class="card">
+      <h3>Events and appearances</h3>
+      <p>Launches, store openings, training sessions, panels. Available in France and internationally.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="label">KEVINGYM Media Kit</span>
+    <span class="label">03</span>
+  </div>
+</section>
+
+<!-- 4. Preuve -->
+<section class="page">
+  <div class="label">Proof</div>
+  <h2>What one partnership<br />returned.</h2>
+  <p style="margin-top: 16px; max-width: 470px;">
+    Commission only: no fixed fee and no media budget. Paid on what the audience
+    actually bought.
+  </p>
+
+  <div class="card" style="margin-top: 30px; padding: 30px 32px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: 0.06em;">ARNTREAL</span>
+      <span style="width: 1px; height: 15px; background: var(--border);"></span>
+      <span class="label">68 days</span>
+      <span style="width: 1px; height: 15px; background: var(--border);"></span>
+      <span class="label">Commission only</span>
+    </div>
+
+    <!-- minmax(0, 1fr) et pas 1fr : le montant est plus large que sa colonne,
+         et 1fr le laisse pousser, ce qui donne quatre colonnes de largeurs
+         differentes. Meme traitement que la proof bar du site, filets compris,
+         sans cadres autour des chiffres. -->
+    <div class="metrics">
+      <div><div class="v">&euro;16,817</div><div class="label k">Sales generated</div></div>
+      <div><div class="v">112</div><div class="label k">Orders</div></div>
+      <div><div class="v">13%</div><div class="label k">Conversion rate</div></div>
+      <div><div class="v">879</div><div class="label k">Referrals</div></div>
+    </div>
+  </div>
+
+  <p class="note" style="margin-top: 16px; max-width: 520px;">
+    Measured over 68 consecutive days in ARNTREAL's own affiliate dashboard: 112
+    orders from 879 tracked referrals. The full export is available on request.
+  </p>
+
+  <div class="label" style="margin-top: 46px;">How an inquiry is handled</div>
+  <div class="steps" style="margin-top: 16px;">
+    <div class="step"><div class="n">01</div><h3>You write</h3><p>One email with the brand, the product, the window and the budget range.</p></div>
+    <div class="step"><div class="n">02</div><h3>I answer</h3><p>I read and answer every professional inquiry myself. No agency in between.</p></div>
+    <div class="step"><div class="n">03</div><h3>We scope it</h3><p>Formats, usage rights, timeline and price agreed in writing before anything is shot.</p></div>
+    <div class="step"><div class="n">04</div><h3>I deliver</h3><p>Shot, edited and delivered to the agreed spec, with revisions in scope.</p></div>
+  </div>
+
+  <div class="todo" style="margin-top: 32px;">
+    <div class="k">Rate card</div>
+    <div class="ph">PLACEHOLDER</div>
+    <div class="src">
+      Decide whether this document carries prices at all. A starting-from figure filters
+      out the briefs that were never going to close; no figure keeps every conversation
+      open. Both work, quoting a number you later walk back does not.
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="label">KEVINGYM Media Kit</span>
+    <span class="label">04</span>
+  </div>
+</section>
+
+<!-- 5. Contact -->
+<section class="page" style="justify-content: center; text-align: center; align-items: center;">
+  <img src="http://localhost:3100/wordmark.svg" alt="KEVINGYM" style="width: 200px;" />
+
+  <h2 style="margin-top: 56px; font-size: 38px;">Let's work together.</h2>
+  <p style="margin-top: 18px; max-width: 400px;">
+    Tell me the brand, the product and the window. I read and answer every
+    professional inquiry myself.
+  </p>
+
+  <div style="margin-top: 40px; font-size: 24px; font-weight: 600; letter-spacing: -0.02em;">
+    partnerships@kevingym.com
+  </div>
+
+  <div style="display: flex; gap: 28px; margin-top: 34px;">
+    <span class="label">kevingym.com</span>
+    <span class="label">Instagram @kevingym27</span>
+    <span class="label">TikTok @kevingym27</span>
+  </div>
+
+  <div style="position: absolute; bottom: 64px; left: 68px; right: 68px;">
+    <div class="rule"></div>
+    <div style="display: flex; justify-content: space-between; margin-top: 16px;">
+      <span class="label">Built by courage</span>
+      <span class="label">05</span>
+    </div>
+  </div>
+</section>

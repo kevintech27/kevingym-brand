@@ -1,0 +1,73 @@
+<!-- Signature mail KEVINGYM.
+
+     Ecrite en tableaux avec des styles en ligne, pas en CSS moderne : Outlook
+     rend le HTML avec le moteur de Word, qui ignore flex, grid, et la plupart
+     des feuilles de style. Ce qui suit est laid a lire et correct a l'affichage,
+     dans cet ordre de priorite.
+
+     Trois contraintes qui expliquent chaque choix du fichier :
+
+     1. Le wordmark est un PNG, pas le SVG du site. Outlook et Gmail
+        n'affichent pas les SVG. Le fichier est rasterise a 3x par
+        scripts/wordmark-email.js et sert depuis kevingym.com, en absolu :
+        un chemin relatif ne veut rien dire dans une boite mail.
+
+     2. Geist ne se charge pas dans un client mail. Aucune police distante ne
+        se charge. Le texte tombe donc sur une pile systeme. La marque est
+        portee par le wordmark dessine, qui lui est une image : c'est le seul
+        endroit ou la lettre KEVINGYM est vraiment la bonne.
+
+     3. Le bloc porte bgcolor ET background-color. Certains clients ignorent
+        l'un, d'autres l'autre. Sans les deux, le texte blanc peut se
+        retrouver sur fond blanc chez le destinataire, ce qui rend la
+        signature invisible au lieu d'imparfaite.
+
+     POUR L'INSTALLER : ouvrir ce fichier dans un navigateur, tout selectionner
+     (Ctrl+A), copier, puis coller dans Gmail (Parametres > Signature) ou dans
+     Outlook (Fichier > Options > Courrier > Signatures). Coller le rendu, pas
+     le code source.
+
+     L'image ne s'affichera qu'une fois kevingym.com deploye avec
+     public/wordmark-email.png. Avant ca, le destinataire voit le texte de
+     remplacement KEVINGYM, ce qui reste lisible. -->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+  <tr>
+    <td bgcolor="#000000" style="background-color:#000000;padding:26px 30px;border-radius:14px;">
+
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr>
+          <td style="padding:0 0 18px 0;line-height:0;">
+            <a href="https://kevingym.com" style="text-decoration:none;">
+              <img src="https://kevingym.com/wordmark-email.png"
+                   width="200" height="29" alt="KEVINGYM"
+                   style="display:block;width:200px;height:29px;border:0;outline:none;text-decoration:none;" />
+            </a>
+          </td>
+        </tr>
+
+        <!-- Filet. Une cellule d'un pixel de haut avec une couleur de fond :
+             une bordure CSS seule saute chez une partie des clients. -->
+        <tr>
+          <td bgcolor="#2E2E33" height="1" style="background-color:#2E2E33;height:1px;line-height:1px;font-size:0;">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td style="padding:16px 0 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#FFFFFF;">
+            <span style="color:#FFFFFF;font-weight:600;">Kevin Nguena</span>
+            <span style="color:#6E6E76;">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+            <span style="color:#A1A1AA;">Content Creator, Athlete, Founder</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:7px 0 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#A1A1AA;">
+            <a href="mailto:partnerships@kevingym.com" style="color:#FFFFFF;text-decoration:none;">partnerships@kevingym.com</a>
+            <span style="color:#6E6E76;">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+            <a href="https://kevingym.com" style="color:#FFFFFF;text-decoration:none;">kevingym.com</a>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
