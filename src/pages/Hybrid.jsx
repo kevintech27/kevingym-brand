@@ -31,13 +31,23 @@ const Where = () => (
     align="center"
     className="border-t border-kg-border"
   >
-    <div className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-2 sm:gap-6">
+    {/* Deux colonnes a partir de md et pas de sm. Entre 640 et 767px les
+        cartes tombaient a 210px de contenu, trop etroit pour
+        app.kevingymworkout.com: le domaine long passait sur deux lignes quand
+        le court restait sur une, et les deux cartes se desalignaient. */}
+    <div className="mx-auto grid max-w-3xl gap-5 md:grid-cols-2 md:gap-6">
       <Reveal className="h-full">
         <a href={HYBRID.home} className="group block h-full">
           <div className="kg-card flex h-full flex-col justify-between gap-8 px-8 py-10">
             <div>
               <Label>The programme</Label>
-              <p className="kg-display kg-shade mt-4 text-[clamp(1.5rem,4vw,2rem)]">
+              {/* Un nom de domaine n'offre aucun point de cesure au
+                  navigateur: il deborde de la carte et se fait couper net par
+                  l'arrondi, sans jamais passer a la ligne. Le clamp est donc
+                  calibre sur la plus longue des deux chaines,
+                  app.kevingymworkout.com, et overflow-wrap sert de garde-fou
+                  si une adresse plus longue arrive un jour. */}
+              <p className="kg-display kg-shade mt-4 text-[clamp(1.1rem,2.5vw,1.45rem)] [overflow-wrap:anywhere]">
                 kevingymworkout.com
               </p>
               <p className="mt-4 text-sm font-light leading-relaxed tracking-copy text-kg-muted">
@@ -56,7 +66,7 @@ const Where = () => (
           <div className="kg-card flex h-full flex-col justify-between gap-8 px-8 py-10">
             <div>
               <Label>Members</Label>
-              <p className="kg-display kg-shade mt-4 text-[clamp(1.5rem,4vw,2rem)]">
+              <p className="kg-display kg-shade mt-4 text-[clamp(1.1rem,2.5vw,1.45rem)] [overflow-wrap:anywhere]">
                 app.kevingymworkout.com
               </p>
               <p className="mt-4 text-sm font-light leading-relaxed tracking-copy text-kg-muted">
