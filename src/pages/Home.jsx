@@ -87,7 +87,7 @@ const Hero = () => {
                 Work with me
               </Link>
               <a href={HYBRID.home} className="kg-link text-sm font-medium tracking-copy">
-                The HYBRID programme &rsaquo;
+                HYBRID SYSTEM &rsaquo;
               </a>
             </div>
           </Reveal>
@@ -203,7 +203,7 @@ const Paths = () => (
           {
             to: '/hybrid',
             eyebrow: 'Training',
-            title: 'HYBRID.',
+            title: 'HYBRID SYSTEM.',
             body: 'The single training system I sell. Strength and conditioning in the same week, structured so neither cancels the other.',
             action: 'About the system',
           },

@@ -8,8 +8,8 @@ export default function NotFound() {
       <Label className="mx-auto">404</Label>
       <h1 className="kg-display kg-shade mt-6 text-[clamp(2.4rem,7vw,5rem)]">Page not found.</h1>
       <p className="mx-auto mt-8 max-w-measure text-lg font-light leading-relaxed tracking-copy text-kg-muted">
-        This address doesn&apos;t exist on kevingym.com. If you were looking for the HYBRID
-        programme, your account, or your member area, that all lives on the programme site.
+        This address doesn&apos;t exist on kevingym.com. If you were looking for HYBRID SYSTEM,
+        your account, or your member area, that all lives on the programme site.
       </p>
       <div className="mt-12 flex flex-wrap justify-center gap-3">
         <Link to="/" className="kg-btn">

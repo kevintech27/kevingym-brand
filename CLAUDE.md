@@ -1,7 +1,7 @@
 # KEVINGYM brand site
 
 Vitrine de marque personnelle de Kevin Nguena sur kevingym.com. Le programme
-HYBRID et l'app vivent sur kevingymworkout.com et app.kevingymworkout.com : ce
+HYBRID SYSTEM et l'app vivent sur kevingymworkout.com et app.kevingymworkout.com : ce
 sont des liens sortants ici, jamais du contenu dupliqué.
 
 Lire `DA_KEVINGYM_VITRINE.md` avant toute intervention sur le design.

@@ -7,14 +7,14 @@ const SITE_LINKS = [
   { to: '/content', label: 'Content' },
   { to: '/partners/brands', label: 'For brands' },
   { to: '/partners/gyms', label: 'For gyms' },
-  { to: '/hybrid', label: 'HYBRID' },
+  { to: '/hybrid', label: 'HYBRID SYSTEM' },
   { to: '/contact', label: 'Contact' },
 ];
 
 // Outbound only. The programme, the member area and the link-in-bio all live
 // on their own hosts: this site links to them and never mirrors them.
 const ELSEWHERE = [
-  { href: ECOSYSTEM.programme, label: 'HYBRID programme' },
+  { href: ECOSYSTEM.programme, label: 'HYBRID SYSTEM' },
   { href: ECOSYSTEM.app, label: 'Member area' },
   { href: ECOSYSTEM.links, label: 'All links' },
 ];

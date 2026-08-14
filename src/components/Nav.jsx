@@ -12,7 +12,7 @@ const LINKS = [
   { to: '/about', label: 'About' },
   { to: '/content', label: 'Content' },
   { to: '/partners', label: 'Partners' },
-  { to: '/hybrid', label: 'HYBRID' },
+  { to: '/hybrid', label: 'HYBRID SYSTEM' },
 ];
 
 const linkClass = ({ isActive }) =>

@@ -2,7 +2,7 @@
 import { Label, PageHead, Reveal, Section } from '@/components/Primitives';
 import { ContactCTA } from '@/components/Blocks';
 
-// HYBRID on the personal site.
+// HYBRID SYSTEM on the personal site.
 //
 // This page explains what the system is and sends every buying and every
 // account action to kevingymworkout.com. It deliberately holds no price, no
@@ -27,7 +27,7 @@ const What = () => (
 const Where = () => (
   <Section
     label="Where it lives"
-    title="Everything HYBRID is on its own site."
+    title="Everything about HYBRID SYSTEM is on its own site."
     align="center"
     className="border-t border-kg-border"
   >
@@ -51,7 +51,7 @@ const Where = () => (
                 kevingymworkout.com
               </p>
               <p className="mt-4 text-sm font-light leading-relaxed tracking-copy text-kg-muted">
-                What is inside, how it is structured, and the price. This is where HYBRID is sold.
+                What is inside, how it is structured, and the price. This is where HYBRID SYSTEM is sold.
               </p>
             </div>
             <span className="text-sm font-medium tracking-copy text-kg-muted transition-colors duration-500 ease-apple group-hover:text-kg-white">
@@ -70,7 +70,7 @@ const Where = () => (
                 app.kevingymworkout.com
               </p>
               <p className="mt-4 text-sm font-light leading-relaxed tracking-copy text-kg-muted">
-                Already bought HYBRID? Your account, your sessions and your progress are here.
+                Already bought HYBRID SYSTEM? Your account, your sessions and your progress are here.
               </p>
             </div>
             <span className="text-sm font-medium tracking-copy text-kg-muted transition-colors duration-500 ease-apple group-hover:text-kg-white">
@@ -83,7 +83,7 @@ const Where = () => (
 
     <p className="mx-auto mt-12 max-w-measure text-center text-xs font-light leading-relaxed text-kg-dim">
       kevingym.com is the personal brand site. It never sells the programme and never holds a
-      checkout: HYBRID is bought, delivered and supported on kevingymworkout.com.
+      checkout: HYBRID SYSTEM is bought, delivered and supported on kevingymworkout.com.
     </p>
   </Section>
 );
@@ -93,7 +93,7 @@ export default function Hybrid() {
     <>
       <PageHead eyebrow="Training" title={`${HYBRID.name}.`} intro={HYBRID.tagline}>
         <a href={HYBRID.home} className="kg-btn">
-          Discover HYBRID
+          Discover HYBRID SYSTEM
         </a>
         <a href={HYBRID.app} className="kg-btn-ghost">
           Member area
@@ -104,8 +104,8 @@ export default function Hybrid() {
       <Where />
       <ContactCTA
         title="Question about the programme?"
-        intro="Support for HYBRID is handled on the programme site. For anything else, this inbox is mine."
-        subject="Question about HYBRID"
+        intro="Support for HYBRID SYSTEM is handled on the programme site. For anything else, this inbox is mine."
+        subject="Question about HYBRID SYSTEM"
       />
     </>
   );

@@ -18,7 +18,7 @@ export const META = {
   '/': {
     title: 'Kevin Nguena | KEVINGYM, Content Creator, Athlete, Founder',
     description:
-      'Official site of Kevin Nguena. Content creator, athlete, and founder of KEVINGYM. Brand collaborations, gym partnerships, and the HYBRID training system.',
+      'Official site of Kevin Nguena. Content creator, athlete, and founder of KEVINGYM. Brand collaborations, gym partnerships, and HYBRID SYSTEM.',
   },
   '/about': {
     title: 'About Kevin Nguena | KEVINGYM',
@@ -46,9 +46,9 @@ export const META = {
       'Filming on site, open training sessions, opening coverage and ongoing home-gym partnerships with Kevin Nguena.',
   },
   '/hybrid': {
-    title: 'HYBRID | The training system by Kevin Nguena',
+    title: 'HYBRID SYSTEM | Strength and conditioning by Kevin Nguena',
     description:
-      'HYBRID is the single training system by Kevin Nguena: strength and conditioning in the same week. Sold and delivered on kevingymworkout.com.',
+      'HYBRID SYSTEM is the single training system by Kevin Nguena: strength and conditioning in the same week. Sold and delivered on kevingymworkout.com.',
   },
   '/contact': {
     title: 'Contact | Kevin Nguena, KEVINGYM',

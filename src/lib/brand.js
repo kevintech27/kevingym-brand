@@ -22,7 +22,7 @@ export const ROUTES = [
   { path: '/partners', label: 'Partners' },
   { path: '/partners/brands', label: 'For brands' },
   { path: '/partners/gyms', label: 'For gyms' },
-  { path: '/hybrid', label: 'HYBRID' },
+  { path: '/hybrid', label: 'HYBRID SYSTEM' },
   { path: '/contact', label: 'Contact' },
 ];
 
@@ -329,16 +329,16 @@ export const PARTNER_PROOF = {
 // honest open state rather than inventing a partner.
 export const GYM_PARTNERS = [];
 
-// HYBRID
+// HYBRID SYSTEM
 // The single training system. It is sold and delivered on kevingymworkout.com.
 // This site only explains what it is and links out: never a second checkout,
 // never a second price, never a competing canonical.
 export const HYBRID = {
-  name: 'HYBRID',
+  name: 'HYBRID SYSTEM',
   tagline:
     'One system. Strength and conditioning in the same week, without either one cancelling the other.',
   body: [
-    'HYBRID is the only training system I sell. There is no second programme, no beginner and advanced version sold separately, no tiers under different names.',
+    'HYBRID SYSTEM is the only training system I sell. There is no second programme, no beginner and advanced version sold separately, no tiers under different names.',
     'It is the way I train: heavy work and conditioning inside the same week, structured so the two support each other instead of competing.',
   ],
   // Deliberately no session counts, no week counts and no results claims here.

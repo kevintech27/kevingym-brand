@@ -139,14 +139,14 @@ export const Steps = ({ items }) => (
 );
 
 /**
- * HYBRID call to action. Every route that mentions the programme uses this so
- * there is exactly one place in the codebase deciding where a HYBRID button
+ * HYBRID SYSTEM call to action. Every route that mentions the programme uses this so
+ * there is exactly one place in the codebase deciding where a HYBRID SYSTEM button
  * points: kevingymworkout.com, never this domain.
  */
-export const HybridCTA = ({ label = 'Discover HYBRID' }) => (
+export const HybridCTA = ({ label = 'Discover HYBRID SYSTEM' }) => (
   <Section
     label="Training"
-    title="HYBRID."
+    title="HYBRID SYSTEM."
     intro={HYBRID.tagline}
     align="center"
     className="border-t border-kg-border"
@@ -160,7 +160,7 @@ export const HybridCTA = ({ label = 'Discover HYBRID' }) => (
       </a>
     </div>
     <p className="mx-auto mt-8 max-w-measure text-center text-xs font-light leading-relaxed text-kg-dim">
-      HYBRID is sold and delivered on kevingymworkout.com. Your account and your programme live on
+      HYBRID SYSTEM is sold and delivered on kevingymworkout.com. Your account and your programme live on
       app.kevingymworkout.com.
     </p>
   </Section>

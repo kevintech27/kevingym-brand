@@ -48,7 +48,7 @@ const Elsewhere = () => (
         All links
       </a>
       <a href={ECOSYSTEM.programme} className="kg-btn-ghost">
-        HYBRID programme
+        HYBRID SYSTEM
       </a>
       <a href={ECOSYSTEM.app} className="kg-btn-ghost">
         Member area
