@@ -66,9 +66,18 @@ const Wall = () => {
       align="center"
       className="border-t border-kg-border"
     >
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5">
+      {/* Flex centre et non grille a colonnes fixes. Le nombre de marques
+          bouge quand une entree est retiree, et une grille laisse alors un
+          trou en fin de rangee qui se lit comme un logo qui n'a pas charge.
+          Centrer la derniere rangee fait tenir le mur a quatre, cinq ou six
+          noms sans retoucher la mise en page. */}
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
         {COLLABORATIONS.map((c, i) => (
-          <Reveal key={c.name} delay={(i % 3) * 90} className="h-full">
+          <Reveal
+            key={c.name}
+            delay={(i % 3) * 90}
+            className="h-full basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.834rem)]"
+          >
             <Card className="group flex h-full min-h-[130px] flex-col items-center justify-center gap-3 px-5 py-8 text-center sm:min-h-[150px]">
               <BrandMark name={c.name} logo={c.logo} />
               {c.desc && (
@@ -86,7 +95,10 @@ const Wall = () => {
         ))}
 
         {Array.from({ length: COLLABORATION_SLOTS_OPEN }).map((_, i) => (
-          <Reveal key={`slot-${i}`}>
+          <Reveal
+            key={`slot-${i}`}
+            className="basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.834rem)]"
+          >
             <div className="flex h-full min-h-[130px] items-center justify-center rounded-[28px] border border-dashed border-kg-border sm:min-h-[150px]">
               <Label>Open slot</Label>
             </div>

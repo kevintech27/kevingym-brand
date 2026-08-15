@@ -281,12 +281,21 @@ export const PROCESS = [
 // they're trademarks, and the versions floating around are usually the wrong
 // lockup, the wrong colour, or a low-res JPEG with a white box behind it.
 //
-// TODO KEVIN: confirm this list before launch. Keep only brands you have
-// actually worked with. One unconfirmed name on this wall is the single thing
-// most likely to cost you a real deal.
+// Every name below was checked with Kevin on 2026-08-15, against one test:
+// could he produce an email, a contract, an invoice or delivered content for
+// it if a brand manager asked tomorrow. The section is titled "Brands I've
+// worked with", in the past tense, so a finished relationship belongs here.
+//
+// An affiliate link is not a qualifying relationship on its own. The test is
+// whether it produced something, not what it is called: ARNTREAL is also
+// commission only, and it earns its place through the figures in
+// PARTNER_PROOF. A signup that generated nothing does not.
+//
+// That is why one name was removed rather than kept. The wall is read at the
+// level of its weakest entry, never its strongest, so five names that survive
+// a phone call beat six where one deflates.
 export const COLLABORATIONS = [
   { name: 'ARNTREAL', logo: null, desc: null, result: null },
-  { name: 'Ultrahuman', logo: null, desc: null, result: null },
   { name: 'Under Armour', logo: null, desc: null, result: null },
   { name: 'DFYNE', logo: null, desc: null, result: null },
   { name: 'Prozis', logo: null, desc: null, result: null },
