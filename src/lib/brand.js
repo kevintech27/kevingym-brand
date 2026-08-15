@@ -61,6 +61,16 @@ export const STATS = [
   { id: 'reach', label: 'Reach', value: 'FR + International' },
 ];
 
+// La provenance des chiffres, en clair. Le site ne l'affiche pas, le media kit
+// si: un PDF part par mail, se fait suivre, et se retrouve lu trois mois plus
+// tard par quelqu'un qui n'a jamais parle a Kevin. Une phrase qui dit quand et
+// ou chaque chiffre a ete releve est ce qui le fait survivre a cette lecture.
+//
+// A mettre a jour en meme temps que STATS. C'est une chaine et pas un
+// commentaire precisement pour que scripts/media-kit.js puisse la lire.
+export const STATS_SOURCE =
+  'Follower counts confirmed 15 August 2026. Top post views and lifetime likes checked on the public profiles 27 July 2026. All figures cumulative and rounded down.';
+
 export const PERSON = {
   name: 'Kevin Nguena',
   handle: 'KEVINGYM',
