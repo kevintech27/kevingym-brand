@@ -1,5 +1,6 @@
 ﻿import { Link } from 'react-router-dom';
 import {
+  COACHING,
   CONTACT_EMAIL,
   ECOSYSTEM,
   HYBRID,
@@ -155,12 +156,15 @@ export const HybridCTA = ({ label = 'Discover HYBRID SYSTEM' }) => (
       <a href={HYBRID.home} className="kg-btn">
         {label}
       </a>
-      <a href={HYBRID.app} className="kg-btn-ghost">
-        Member area
+      <a href={COACHING.home} className="kg-btn-ghost">
+        {COACHING.action}
       </a>
     </div>
+    {/* Deux domaines, deux offres. La version precedente disait que le
+        programme vivait sur app.kevingymworkout.com, ce qui presentait le
+        coaching premium comme le simple espace de connexion du programme. */}
     <p className="mx-auto mt-8 max-w-measure text-center text-xs font-light leading-relaxed text-kg-dim">
-      HYBRID SYSTEM is sold and delivered on kevingymworkout.com. Your account and your programme live on
+      HYBRID SYSTEM is sold and delivered on kevingymworkout.com. Coaching is a separate offer, on
       app.kevingymworkout.com.
     </p>
   </Section>

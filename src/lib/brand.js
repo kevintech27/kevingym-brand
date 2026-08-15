@@ -348,6 +348,37 @@ export const HYBRID = {
   app: ECOSYSTEM.app,
 };
 
+// Coaching
+// The premium tier, on app.kevingymworkout.com. It is a separate offer from
+// HYBRID SYSTEM, not the member area of it: the programme is bought and
+// followed on kevingymworkout.com, coaching is Kevin working with the person.
+// Writing it as "your account and your programme" was wrong and made the
+// premium offer read as a login screen.
+//
+// Kevin is the only coach on the platform for now. That is deliberately not
+// written on the page: it is a fact about the roadmap, not something a visitor
+// is buying, and it dates badly the day a second coach arrives.
+//
+// `open` drives the card on /hybrid. False renders the closed state instead of
+// an invitation, on purpose. A call to action that leads to a full roster
+// costs more than the sentence saying it is full: the visitor who writes and
+// gets nothing remembers the disappointment, the one who reads "currently
+// full" reads a roster worth waiting for. Being full is the argument, not the
+// apology.
+//
+// Flip `open` to true when places free up and the invitation comes back on its
+// own. Nothing else to change.
+export const COACHING = {
+  label: 'Coaching',
+  home: ECOSYSTEM.app,
+  open: false,
+  body: 'Coaching with me directly, not the programme on its own. This is the premium tier.',
+  closedNote: 'Currently full. No new places for now.',
+  openNote: 'Places are limited and I coach everyone on the roster myself.',
+  action: 'Client login',
+  enquirySubject: 'Coaching',
+};
+
 // Builder section. The one accent zone of the brand system.
 // No stack list and no job-title label here on purpose. A brand manager
 // doesn't buy "React, Supabase, Stripe". That's CV material, and it reframes

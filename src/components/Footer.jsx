@@ -15,7 +15,7 @@ const SITE_LINKS = [
 // on their own hosts: this site links to them and never mirrors them.
 const ELSEWHERE = [
   { href: ECOSYSTEM.programme, label: 'HYBRID SYSTEM' },
-  { href: ECOSYSTEM.app, label: 'Member area' },
+  { href: ECOSYSTEM.app, label: 'Coaching' },
   { href: ECOSYSTEM.links, label: 'All links' },
 ];
 

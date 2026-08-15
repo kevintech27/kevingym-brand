@@ -1,4 +1,5 @@
 ﻿import {
+  COACHING,
   CONTACT_EMAIL,
   CONTACT_INTENTS,
   ECOSYSTEM,
@@ -50,8 +51,8 @@ const Elsewhere = () => (
       <a href={ECOSYSTEM.programme} className="kg-btn-ghost">
         HYBRID SYSTEM
       </a>
-      <a href={ECOSYSTEM.app} className="kg-btn-ghost">
-        Member area
+      <a href={COACHING.home} className="kg-btn-ghost">
+        {COACHING.action}
       </a>
       {/* Nothing renders while there is no media kit. See MEDIA_KIT_URL in
           src/lib/brand.js: setting it brings this button back on its own. */}

@@ -1,4 +1,4 @@
-﻿import { HYBRID } from '@/lib/brand';
+﻿import { COACHING, HYBRID, mailto } from '@/lib/brand';
 import { Label, PageHead, Reveal, Section } from '@/components/Primitives';
 import { ContactCTA } from '@/components/Blocks';
 
@@ -61,29 +61,52 @@ const Where = () => (
         </a>
       </Reveal>
 
+      {/* Coaching, pas espace membre. C'est une offre distincte du programme,
+          et son etat ouvert ou complet vient de COACHING dans
+          src/lib/brand.js. */}
       <Reveal delay={100} className="h-full">
-        <a href={HYBRID.app} className="group block h-full">
+        <a href={COACHING.home} className="group block h-full">
           <div className="kg-card flex h-full flex-col justify-between gap-8 px-8 py-10">
             <div>
-              <Label>Members</Label>
+              <Label>{COACHING.label}</Label>
               <p className="kg-display kg-shade mt-4 text-[clamp(1.1rem,2.5vw,1.45rem)] [overflow-wrap:anywhere]">
                 app.kevingymworkout.com
               </p>
               <p className="mt-4 text-sm font-light leading-relaxed tracking-copy text-kg-muted">
-                Already bought HYBRID SYSTEM? Your account, your sessions and your progress are here.
+                {COACHING.body}
+              </p>
+              {/* Complet se dit en blanc, pas en gris. C'est un argument de
+                  rarete, pas une excuse a faire passer discretement. */}
+              <p
+                className={`mt-3 text-sm tracking-copy ${
+                  COACHING.open ? 'font-light text-kg-muted' : 'font-medium text-kg-white'
+                }`}
+              >
+                {COACHING.open ? COACHING.openNote : COACHING.closedNote}
               </p>
             </div>
             <span className="text-sm font-medium tracking-copy text-kg-muted transition-colors duration-500 ease-apple group-hover:text-kg-white">
-              Open the member area &rsaquo;
+              {COACHING.action} &rsaquo;
             </span>
           </div>
         </a>
       </Reveal>
     </div>
 
+    {/* Tant que le coaching est complet, la seule action honnete est de
+        proposer d'ecrire. Un bouton d'inscription qui mene a une liste pleine
+        coute plus cher que la phrase qui dit qu'elle est pleine. */}
+    {!COACHING.open && (
+      <p className="mt-8 text-center">
+        <a href={mailto(COACHING.enquirySubject)} className="kg-link text-sm font-medium tracking-copy">
+          Ask about the next place &rsaquo;
+        </a>
+      </p>
+    )}
+
     <p className="mx-auto mt-12 max-w-measure text-center text-xs font-light leading-relaxed text-kg-dim">
-      kevingym.com is the personal brand site. It never sells the programme and never holds a
-      checkout: HYBRID SYSTEM is bought, delivered and supported on kevingymworkout.com.
+      kevingym.com is the personal brand site. It never sells and never holds a checkout. HYBRID
+      SYSTEM is bought and delivered on kevingymworkout.com, coaching on app.kevingymworkout.com.
     </p>
   </Section>
 );
@@ -95,8 +118,8 @@ export default function Hybrid() {
         <a href={HYBRID.home} className="kg-btn">
           Discover HYBRID SYSTEM
         </a>
-        <a href={HYBRID.app} className="kg-btn-ghost">
-          Member area
+        <a href={COACHING.home} className="kg-btn-ghost">
+          {COACHING.action}
         </a>
       </PageHead>
 
