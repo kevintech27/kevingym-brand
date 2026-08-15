@@ -282,20 +282,25 @@ export const PROCESS = [
 // lockup, the wrong colour, or a low-res JPEG with a white box behind it.
 //
 // Every name below was checked with Kevin on 2026-08-15, against one test:
-// could he produce an email, a contract, an invoice or delivered content for
-// it if a brand manager asked tomorrow. The section is titled "Brands I've
-// worked with", in the past tense, so a finished relationship belongs here.
+// something was exchanged in both directions. Either the brand paid, or it
+// sent product, or Kevin produced and delivered content for it. Each name
+// here is backed by a document or a shipment he can point to.
 //
-// An affiliate link is not a qualifying relationship on its own. The test is
-// whether it produced something, not what it is called: ARNTREAL is also
-// commission only, and it earns its place through the figures in
-// PARTNER_PROOF. A signup that generated nothing does not.
+// The section is titled "Brands I've worked with", in the past tense, so a
+// finished relationship belongs on the wall as much as a running one.
 //
-// That is why one name was removed rather than kept. The wall is read at the
-// level of its weakest entry, never its strongest, so five names that survive
-// a phone call beat six where one deflates.
+// What does not qualify is a self-service signup with nothing behind it. The
+// test is what was exchanged, never the label on the deal: ARNTREAL is
+// commission only and earns its place through the figures in PARTNER_PROOF,
+// while an affiliate account that neither sold nor received anything would be
+// a form filled in, not a partnership.
+//
+// The wall is read at the level of its weakest entry, never its strongest.
+// One name that deflates on a phone call costs more than the five others
+// bring, so the bar stays here rather than moving to fit a longer list.
 export const COLLABORATIONS = [
   { name: 'ARNTREAL', logo: null, desc: null, result: null },
+  { name: 'Ultrahuman', logo: null, desc: null, result: null },
   { name: 'Under Armour', logo: null, desc: null, result: null },
   { name: 'DFYNE', logo: null, desc: null, result: null },
   { name: 'Prozis', logo: null, desc: null, result: null },
