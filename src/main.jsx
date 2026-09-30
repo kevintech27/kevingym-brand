@@ -1,8 +1,13 @@
 import React from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { inject } from '@vercel/analytics';
 import App from '@/App';
 import '@/index.css';
+
+// Vercel Web Analytics: page views, no cookies. The script only reports in
+// production and follows client-side navigation on its own.
+inject();
 
 const container = document.getElementById('root');
 
