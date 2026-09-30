@@ -185,7 +185,7 @@ export const WORK_ITEMS = [
 // brand manager sees: it has to be a shot frame, not a phone selfie enlarged.
 export const HERO = {
   file: '/images/kevin-hero.jpg',
-  alt: 'Kevin Nguena, portrait',
+  alt: 'Kevin Nguena on a running track at golden hour',
   image: '/images/kevin-hero.jpg',
 };
 
