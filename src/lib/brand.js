@@ -183,10 +183,14 @@ export const WORK_ITEMS = [
 // Format: vertical 3:4, 1200 x 1600 or larger, JPEG under 500 KB. It renders
 // at up to 400px wide, so 1200px covers a 3x screen. It is the first thing a
 // brand manager sees: it has to be a shot frame, not a phone selfie enlarged.
+//
+// Swapping the photo means a new file name. /images is cached for a week in
+// the browser, so a new photo under the old name stays invisible to anyone
+// who already visited.
 export const HERO = {
-  file: '/images/kevin-hero.jpg',
+  file: '/images/kevin-hero-track.jpg',
   alt: 'Kevin Nguena on a running track at golden hour',
-  image: '/images/kevin-hero.jpg',
+  image: '/images/kevin-hero-track.jpg',
 };
 
 export const DELIVERABLES = ['Instagram Reels', 'TikTok', 'UGC', 'Shoots', 'Long-form'];

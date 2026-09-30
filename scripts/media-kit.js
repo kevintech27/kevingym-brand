@@ -108,7 +108,7 @@ const VALUES = {
   SOCIAL_LABELS: socialLabels,
 };
 
-const res = await fetch(`${ORIGIN}/images/kevin-hero.jpg`, { method: 'HEAD' }).catch(() => null);
+const res = await fetch(`${ORIGIN}/images/kevin-hero-track.jpg`, { method: 'HEAD' }).catch(() => null);
 if (!res || !res.ok) {
   throw new Error(
     `media-kit: ${ORIGIN} ne repond pas. Lancer "npm run build" puis "npm run preview" avant.`
