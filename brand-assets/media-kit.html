@@ -121,12 +121,6 @@
 
   .note { font-size: 11px; color: var(--dim); line-height: 1.6; }
 
-  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 30px; }
-  .metrics > div { padding: 0 18px; text-align: center; }
-  .metrics > div + div { border-left: 1px solid var(--border); }
-  .metrics .v { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-  .metrics .k { margin-top: 9px; }
-
   /* Blocs a completer */
   .todo {
     border: 1px dashed rgba(255, 255, 255, 0.22);
@@ -309,39 +303,12 @@
   </div>
 </section>
 
-<!-- 4. Preuve -->
+<!-- 4. Process -->
 <section class="page">
-  <div class="label">Proof</div>
-  <h2>What one partnership<br />returned.</h2>
-  <p style="margin-top: 16px; max-width: 470px;">
-    Commission only: no fixed fee and no media budget. Paid on what the audience
-    actually bought.
-  </p>
+  <div class="label">Process</div>
+  <h2>How an inquiry<br />is handled.</h2>
 
-  <div class="card" style="margin-top: 30px; padding: 30px 32px;">
-    <div style="display: flex; align-items: center; gap: 16px;">
-      <span style="font-size: 17px; font-weight: 600; letter-spacing: 0.06em;">{{PROOF_BRAND}}</span>
-      <span style="width: 1px; height: 15px; background: var(--border);"></span>
-      <span class="label">{{PROOF_WINDOW}}</span>
-      <span style="width: 1px; height: 15px; background: var(--border);"></span>
-      <span class="label">{{PROOF_MODEL}}</span>
-    </div>
-
-    <!-- minmax(0, 1fr) et pas 1fr : le montant est plus large que sa colonne,
-         et 1fr le laisse pousser, ce qui donne quatre colonnes de largeurs
-         differentes. Meme traitement que la proof bar du site, filets compris,
-         sans cadres autour des chiffres. -->
-    <div class="metrics">
-{{PROOF_CELLS}}
-    </div>
-  </div>
-
-  <p class="note" style="margin-top: 16px; max-width: 520px;">
-    {{PROOF_SOURCE}} The full export is available on request.
-  </p>
-
-  <div class="label" style="margin-top: 46px;">How an inquiry is handled</div>
-  <div class="steps" style="margin-top: 16px;">
+  <div class="steps" style="margin-top: 30px;">
     <div class="step"><div class="n">01</div><h3>You write</h3><p>One email with the brand, the product, the window and the budget range.</p></div>
     <div class="step"><div class="n">02</div><h3>I answer</h3><p>I read and answer every professional inquiry myself. No agency in between.</p></div>
     <div class="step"><div class="n">03</div><h3>We scope it</h3><p>Formats, usage rights, timeline and price agreed in writing before anything is shot.</p></div>

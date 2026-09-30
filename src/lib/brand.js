@@ -307,31 +307,6 @@ export const COLLABORATIONS = [
 ];
 export const COLLABORATION_SLOTS_OPEN = 0;
 
-// Partnership proof, for the media kit only.
-// Read by scripts/media-kit.js. The site no longer shows these figures: the
-// section was taken off /partners and /partners/brands on 2026-09-30.
-//
-// The figures are a closed period, not a live counter. They do not move on
-// their own and must never be presented as if they did. Re-export from the
-// brand's affiliate dashboard before changing any number here, and change the
-// window at the same time.
-//
-// Arithmetic is deliberately checkable from the block itself: 112 orders on
-// 879 tracked referrals is 12.7%, rounded down to 13%.
-export const PARTNER_PROOF = {
-  brand: 'ARNTREAL',
-  window: '68 days',
-  model: 'Commission only',
-  metrics: [
-    { id: 'revenue', label: 'Sales generated', value: '€16,817' },
-    { id: 'orders', label: 'Orders', value: '112' },
-    { id: 'conversion', label: 'Conversion rate', value: '13%' },
-    { id: 'referrals', label: 'Referrals', value: '879' },
-  ],
-  source:
-    "Measured over 68 consecutive days in ARNTREAL's own affiliate dashboard: 112 orders from 879 tracked referrals.",
-};
-
 // Gyms with a confirmed relationship. Empty on purpose: the page renders an
 // honest open state rather than inventing a partner.
 export const GYM_PARTNERS = [];
