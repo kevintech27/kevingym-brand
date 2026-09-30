@@ -4,7 +4,6 @@ import {
   CONTACT_EMAIL,
   ECOSYSTEM,
   HYBRID,
-  PARTNER_PROOF,
   STATS,
   STATS_UPDATED,
   mailto,
@@ -38,68 +37,6 @@ export const ProofBar = ({ bordered = true }) => (
       </p>
     </div>
   </section>
-);
-
-/**
- * Partnership proof. Read straight from PARTNER_PROOF in src/lib/brand.js.
- *
- * Deliberately not folded into the ProofBar. The audience bar answers "how
- * many people", this answers "how much did they buy", and merging the two
- * would let a reader assume every figure on the page carries the same weight.
- * The figures sit on a card, with the source line outside it, so the claim and
- * the way it was measured never read as the same sentence.
- */
-export const PartnerProof = () => (
-  <Section
-    label="Proof"
-    title={PARTNER_PROOF.title}
-    intro={PARTNER_PROOF.intro}
-    align="center"
-    className="border-t border-kg-border"
-  >
-    <Reveal>
-      <Card className="px-7 py-11 sm:px-12 sm:py-14">
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-          <span className="font-display text-lg font-semibold uppercase tracking-[0.08em] text-kg-white sm:text-xl">
-            {PARTNER_PROOF.brand}
-          </span>
-          <span aria-hidden className="hidden h-4 w-px bg-kg-border sm:block" />
-          <Label>{PARTNER_PROOF.window}</Label>
-          <span aria-hidden className="hidden h-4 w-px bg-kg-border sm:block" />
-          <Label>{PARTNER_PROOF.model}</Label>
-        </div>
-
-        <div className="mt-12 grid grid-cols-2 gap-y-10 sm:mt-14 lg:grid-cols-4 lg:divide-x lg:divide-kg-border lg:gap-y-0">
-          {PARTNER_PROOF.metrics.map((m, i) => (
-            <Reveal key={m.id} delay={i * 70} className="lg:px-6">
-              <div className="text-center">
-                {/* tabular-nums keeps the four figures on one optical baseline:
-                    without it the 1s in 16,817 and 112 sit narrow and the row
-                    reads as slightly broken. */}
-                <span className="kg-display kg-shade text-[clamp(1.85rem,4.6vw,2.75rem)] tabular-nums">
-                  {m.value}
-                </span>
-                <div className="kg-label mt-3">{m.label}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Card>
-    </Reveal>
-
-    <p className="mx-auto mt-8 max-w-measure text-center text-xs font-light leading-relaxed text-kg-dim">
-      {PARTNER_PROOF.source}
-    </p>
-
-    <div className="mt-5 text-center">
-      <a
-        href={mailto(PARTNER_PROOF.verifySubject)}
-        className="kg-link text-sm font-medium tracking-copy"
-      >
-        {PARTNER_PROOF.verifyLabel} &rsaquo;
-      </a>
-    </div>
-  </Section>
 );
 
 /** A grid of plain cards: title plus one paragraph. */

@@ -291,8 +291,7 @@ export const PROCESS = [
 //
 // What does not qualify is a self-service signup with nothing behind it. The
 // test is what was exchanged, never the label on the deal: ARNTREAL is
-// commission only and earns its place through the figures in PARTNER_PROOF,
-// while an affiliate account that neither sold nor received anything would be
+// commission only and earns its place through the sales it generated, while an affiliate account that neither sold nor received anything would be
 // a form filled in, not a partnership.
 //
 // The wall is read at the level of its weakest entry, never its strongest.
@@ -308,10 +307,9 @@ export const COLLABORATIONS = [
 ];
 export const COLLABORATION_SLOTS_OPEN = 0;
 
-// Partnership proof.
-// The one place on this site that shows what a partnership actually returned
-// to the brand, rather than what it reached. Audience figures say a campaign
-// was seen; these say it was bought.
+// Partnership proof, for the media kit only.
+// Read by scripts/media-kit.js. The site no longer shows these figures: the
+// section was taken off /partners and /partners/brands on 2026-09-30.
 //
 // The figures are a closed period, not a live counter. They do not move on
 // their own and must never be presented as if they did. Re-export from the
@@ -319,34 +317,19 @@ export const COLLABORATION_SLOTS_OPEN = 0;
 // window at the same time.
 //
 // Arithmetic is deliberately checkable from the block itself: 112 orders on
-// 879 tracked referrals is 12.7%, rounded down to 13%. A brand manager who
-// does that division and lands on the stated rate trusts the rest of the page.
+// 879 tracked referrals is 12.7%, rounded down to 13%.
 export const PARTNER_PROOF = {
   brand: 'ARNTREAL',
   window: '68 days',
   model: 'Commission only',
-  title: 'What one partnership returned.',
-  intro:
-    'Commission only: no fixed fee and no media budget. Paid on what the audience actually bought.',
   metrics: [
     { id: 'revenue', label: 'Sales generated', value: '€16,817' },
     { id: 'orders', label: 'Orders', value: '112' },
     { id: 'conversion', label: 'Conversion rate', value: '13%' },
-    // "Referrals", not "Referrals tracked": the longer label wraps onto two
-    // lines at 390px and leaves the bottom row of the grid uneven. The word
-    // "tracked" is already carried by the source line under the card.
     { id: 'referrals', label: 'Referrals', value: '879' },
   ],
   source:
     "Measured over 68 consecutive days in ARNTREAL's own affiliate dashboard: 112 orders from 879 tracked referrals.",
-  // Offered, not displayed. A dashboard screenshot on a public page proves
-  // nothing, because anyone can edit one in a browser inspector in two
-  // minutes, and publishing a partner's interface exposes data that is not
-  // Kevin's to publish. The invitation is stronger than the image: it costs
-  // nothing to make when the export is real, and it moves verification to the
-  // moment it actually happens, which is the call, not the page.
-  verifyLabel: 'Request the export',
-  verifySubject: 'Partnership figures',
 };
 
 // Gyms with a confirmed relationship. Empty on purpose: the page renders an

@@ -9,7 +9,7 @@ import {
   mailto,
 } from '@/lib/brand';
 import { BrandMark, Card, Label, PageHead, Reveal, Section, Todo } from '@/components/Primitives';
-import { CardGrid, ContactCTA, PartnerProof, ProofBar, Steps } from '@/components/Blocks';
+import { CardGrid, ContactCTA, ProofBar, Steps } from '@/components/Blocks';
 
 const Services = () => (
   <Section
@@ -156,9 +156,6 @@ export default function PartnersBrands() {
       <ProofBar />
       <Services />
       <Wall />
-      {/* Straight after the logo wall: the reader has just seen the name, so
-          the figures land on a brand they already have in mind. */}
-      <PartnerProof />
       <Section
         label="Process"
         title="How it works."
