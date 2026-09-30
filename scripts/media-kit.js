@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer-core';
 import {
   CONTACT_EMAIL,
-  PARTNER_PROOF,
   PERSON,
   SOCIALS,
   STATS,
@@ -91,13 +90,6 @@ const statsCells = STATS.filter((s) => isFigure(s.value))
   })
   .join('\n');
 
-const proofCells = PARTNER_PROOF.metrics
-  .map(
-    (m) =>
-      `      <div><div class="v">${escape(m.value)}</div><div class="label k">${escape(m.label)}</div></div>`
-  )
-  .join('\n');
-
 const socialLabels = SOCIALS.map(
   (s) => `    <span class="label">${escape(s.label)} ${escape(s.handle)}</span>`
 ).join('\n');
@@ -114,11 +106,6 @@ const VALUES = {
   STATS_SOURCE,
   REACH: reach,
   SOCIAL_LABELS: socialLabels,
-  PROOF_BRAND: PARTNER_PROOF.brand,
-  PROOF_WINDOW: PARTNER_PROOF.window,
-  PROOF_MODEL: PARTNER_PROOF.model,
-  PROOF_CELLS: proofCells,
-  PROOF_SOURCE: PARTNER_PROOF.source,
 };
 
 const res = await fetch(`${ORIGIN}/images/kevin-hero.jpg`, { method: 'HEAD' }).catch(() => null);
@@ -131,7 +118,7 @@ if (!res || !res.ok) {
 const template = await fs.readFile(SRC, 'utf8');
 
 // Un jeton mal orthographie dans le gabarit passerait tel quel dans le PDF, et
-// {{PROOF_BRAND}} imprime en toutes lettres dans un document envoye a une
+// {{EMAIL}} imprime en toutes lettres dans un document envoye a une
 // marque est pire qu'un build casse. On echoue donc plutot que de rendre.
 const unknown = [...template.matchAll(/\{\{([A-Z_]+)\}\}/g)]
   .map((m) => m[1])
