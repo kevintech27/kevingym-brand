@@ -53,7 +53,7 @@ const dataUri = async (file, mime) =>
 // La photo passe en data URI. Un chemin file:// depuis une page chargee par
 // setContent est bloque par Chrome, et le rendu sortirait vide sans lever la
 // moindre erreur.
-const photo = await dataUri('public/images/kevin-hero.jpg', 'image/jpeg');
+const photo = await dataUri('public/images/kevin-hero-track.jpg', 'image/jpeg');
 
 // On reprend le seul trace du K depuis public/favicon.svg, pas le fichier
 // entier. Le favicon dessine une tuile noire aux coins arrondis avec un filet
