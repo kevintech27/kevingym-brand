@@ -8,13 +8,15 @@
   SOCIALS,
   mailto,
 } from '@/lib/brand';
+import { CopyEmail } from '@/components/Blocks';
 import { Card, Label, PageHead, Reveal, Section } from '@/components/Primitives';
 
 // Contact.
 //
 // No form. This site is a static build with no backend, and a form that posts
 // nowhere is worse than no form at all: the sender believes the message left.
-// Every button below opens a real mail client with the subject prefilled.
+// Every button below opens a real mail client with the subject prefilled,
+// and with a short brief in the body (BRIEFS in src/lib/brand.js).
 
 const Intents = () => (
   <Section label="Reason" title="What is it about?" align="center" className="border-t border-kg-border">
@@ -86,6 +88,9 @@ export default function Contact() {
             >
               {CONTACT_EMAIL}
             </a>
+          </Reveal>
+          <Reveal delay={180}>
+            <CopyEmail className="mt-10" />
           </Reveal>
         </div>
       </Section>

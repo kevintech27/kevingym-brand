@@ -1,4 +1,5 @@
-﻿import { Link } from 'react-router-dom';
+﻿import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   COACHING,
   CONTACT_EMAIL,
@@ -107,6 +108,56 @@ export const HybridCTA = ({ label = 'Discover HYBRID SYSTEM' }) => (
   </Section>
 );
 
+/**
+ * Copies the contact address. A mailto link does nothing for someone on
+ * webmail with no mail app registered, which is most of the people this site
+ * is written for: a brand manager in Gmail clicks, nothing opens, and the
+ * lead is gone. This is the way out that works everywhere.
+ *
+ * The old execCommand path covers an insecure context or a browser that
+ * refuses the Clipboard API. If both fail, the label says so rather than
+ * claiming a copy that did not happen.
+ */
+export const CopyEmail = ({ className = '' }) => {
+  const [state, setState] = useState('idle');
+
+  useEffect(() => {
+    if (state === 'idle') return undefined;
+    const t = setTimeout(() => setState('idle'), 2400);
+    return () => clearTimeout(t);
+  }, [state]);
+
+  const legacyCopy = () => {
+    const field = document.createElement('textarea');
+    field.value = CONTACT_EMAIL;
+    field.setAttribute('readonly', '');
+    field.style.position = 'fixed';
+    field.style.opacity = '0';
+    document.body.appendChild(field);
+    field.select();
+    const ok = document.execCommand('copy');
+    field.remove();
+    return ok;
+  };
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setState('copied');
+    } catch {
+      setState(legacyCopy() ? 'copied' : 'failed');
+    }
+  };
+
+  const label = { idle: 'Copy address', copied: 'Copied', failed: 'Copy failed, select it above' }[state];
+
+  return (
+    <button type="button" onClick={copy} className={`kg-btn-ghost ${className}`}>
+      <span aria-live="polite">{label}</span>
+    </button>
+  );
+};
+
 /** Closing call to action. Present at the bottom of every route. */
 export const ContactCTA = ({
   title = 'A brand, a gym, a project?',
@@ -125,6 +176,7 @@ export const ContactCTA = ({
       </Reveal>
       <Reveal delay={110}>
         <div className="mt-12 flex flex-wrap justify-center gap-3">
+          <CopyEmail />
           <Link to="/contact" className="kg-btn-ghost">
             All contact options
           </Link>

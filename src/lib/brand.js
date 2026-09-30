@@ -394,5 +394,36 @@ export const CONTACT_INTENTS = [
   { id: 'project', label: 'Project or other', subject: 'Project inquiry' },
 ];
 
-export const mailto = (subject) =>
-  `mailto:${CONTACT_EMAIL}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
+// Briefs, keyed by subject. A blank email tends to come back as one line
+// ("are you open to collabs?"), and the first reply is then a list of
+// questions. Prefilling the body asks those questions up front, so the first
+// email already carries what a quote needs. Every line is a prompt with an
+// empty answer: nothing here is sample content a sender could leave in.
+//
+// Keyed by subject rather than by intent so that every mailto on the site
+// with a matching subject gets the same brief, the buttons on /partners
+// included, without passing anything new at the call site.
+export const BRIEFS = {
+  'Campaign inquiry': [
+    'Brand and product:',
+    'Deliverables (Reels, TikTok, UGC, shoot):',
+    'Timeline:',
+    'Usage rights and duration:',
+    'Budget:',
+  ],
+  'Gym collaboration': ['Gym name and city:', 'What you have in mind:', 'Dates:'],
+  'Event invitation': ['Event name:', 'Date and place:', 'What you expect from me:', 'Fee or budget:'],
+  'Project inquiry': ['What it is:', 'Timeline:'],
+};
+
+const BRIEF_INTRO = 'A few details so I can answer with something concrete:';
+
+export const mailto = (subject) => {
+  const brief = subject && BRIEFS[subject];
+  const params = [];
+  if (subject) params.push(`subject=${encodeURIComponent(subject)}`);
+  // CRLF is what RFC 6068 asks for, and the only line break every mail
+  // client agrees on. A bare LF comes out as one long line in some of them.
+  if (brief) params.push(`body=${encodeURIComponent([BRIEF_INTRO, '', ...brief, ''].join('\r\n'))}`);
+  return `mailto:${CONTACT_EMAIL}${params.length ? `?${params.join('&')}` : ''}`;
+};
