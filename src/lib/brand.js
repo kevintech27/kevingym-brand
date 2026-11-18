@@ -378,7 +378,7 @@ export const BUILDER = {
 };
 
 // Contact
-export const CONTACT_EMAIL = 'partnerships@kevingym.com';
+export const CONTACT_EMAIL = 'kevinbusinesscolab@gmail.com';
 
 // Media kit. While this is null the site says nothing about a media kit at
 // all: no button, no section, no notice. A disabled button and a "coming
