@@ -116,8 +116,8 @@ export const STORY = [
   {
     id: 'street',
     year: 'Street work',
-    image: '/images/kevin-street.jpg',
-    alt: 'Kevin Nguena at an outdoor calisthenics park, pull-up bars behind him',
+    image: '/images/kevin-outdoor-track.jpg',
+    alt: 'Kevin Nguena stretching on an outdoor running track, autumn trees behind him',
     body: 'Bars, bodyweight, whatever was available. Training outside taught me the part of the work that has nothing to do with equipment.',
   },
   {
@@ -162,9 +162,9 @@ export const WORK_ITEMS = [
   {
     id: 'w2',
     title: 'Physique',
-    file: '/images/work/physique.jpg',
-    alt: 'Kevin Nguena, full physique, hand held out to the camera',
-    image: '/images/work/physique.jpg',
+    file: '/images/work/physique-gym.jpg',
+    alt: 'Kevin Nguena, shirtless, standing in a gym',
+    image: '/images/work/physique-gym.jpg',
   },
   {
     id: 'w3',
